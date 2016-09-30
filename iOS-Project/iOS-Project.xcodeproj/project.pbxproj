@@ -105,9 +105,9 @@
 		3D889C9E1D9DDEF7002F8C6E /* iOS-Project */ = {
 			isa = PBXGroup;
 			children = (
-				3D889C9F1D9DDEF7002F8C6E /* AppDelegate.swift */,
 				3D889CA11D9DDEF7002F8C6E /* GameScene.sks */,
 				3D889CA31D9DDEF7002F8C6E /* Actions.sks */,
+				3D889C9F1D9DDEF7002F8C6E /* AppDelegate.swift */,
 				3D889CA51D9DDEF7002F8C6E /* GameScene.swift */,
 				3D889CA71D9DDEF7002F8C6E /* GameViewController.swift */,
 				3D889CA91D9DDEF7002F8C6E /* Main.storyboard */,
