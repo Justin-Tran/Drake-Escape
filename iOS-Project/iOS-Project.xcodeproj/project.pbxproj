@@ -17,6 +17,7 @@
 		3D889CB01D9DDEF7002F8C6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CAE1D9DDEF7002F8C6E /* LaunchScreen.storyboard */; };
 		3D889CBB1D9DDEF7002F8C6E /* iOS_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889CBA1D9DDEF7002F8C6E /* iOS_ProjectTests.swift */; };
 		3D889CC61D9DDEF7002F8C6E /* iOS_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889CC51D9DDEF7002F8C6E /* iOS_ProjectUITests.swift */; };
+		3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		3D889CC11D9DDEF7002F8C6E /* iOS-ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-ProjectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D889CC51D9DDEF7002F8C6E /* iOS_ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ProjectUITests.swift; sourceTree = "<group>"; };
 		3D889CC71D9DDEF7002F8C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = theBoldFont.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +111,10 @@
 				3D889CA51D9DDEF7002F8C6E /* GameScene.swift */,
 				3D889CA71D9DDEF7002F8C6E /* GameViewController.swift */,
 				3D889CA91D9DDEF7002F8C6E /* Main.storyboard */,
-				3D889CAC1D9DDEF7002F8C6E /* Assets.xcassets */,
 				3D889CAE1D9DDEF7002F8C6E /* LaunchScreen.storyboard */,
 				3D889CB11D9DDEF7002F8C6E /* Info.plist */,
+				3D889CAC1D9DDEF7002F8C6E /* Assets.xcassets */,
+				3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */,
 			);
 			path = "iOS-Project";
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			files = (
 				3D889CAB1D9DDEF7002F8C6E /* Main.storyboard in Resources */,
 				3D889CA21D9DDEF7002F8C6E /* GameScene.sks in Resources */,
+				3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */,
 				3D889CAD1D9DDEF7002F8C6E /* Assets.xcassets in Resources */,
 				3D889CB01D9DDEF7002F8C6E /* LaunchScreen.storyboard in Resources */,
 				3D889CA41D9DDEF7002F8C6E /* Actions.sks in Resources */,
@@ -433,6 +437,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cs378.iOS-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -446,6 +451,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cs378.iOS-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -526,6 +532,7 @@
 				3D889CCC1D9DDEF7002F8C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D889CCD1D9DDEF7002F8C6E /* Build configuration list for PBXNativeTarget "iOS-ProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +541,7 @@
 				3D889CCF1D9DDEF7002F8C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D889CD01D9DDEF7002F8C6E /* Build configuration list for PBXNativeTarget "iOS-ProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +550,7 @@
 				3D889CD21D9DDEF7002F8C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
