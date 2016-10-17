@@ -18,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        background.size.width = frame.size.width
+        background.size.height = frame.size.height
         addChild(background)
 
         // Create shape node to use during mouse interaction
