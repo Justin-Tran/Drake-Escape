@@ -11,8 +11,23 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    let player = SKSpriteNode(imageNamed: "8BitDrake")
+    var touchingScreen = false
+    var moveDirection = "None"
+    var gameArea: CGRect
+    
+    override init(size: CGSize) {
+        let maxAspectRatio: CGFloat = 16.0/9.0
+        let playableWidth = size.height / maxAspectRatio
+        let margin = (size.width - playableWidth) / 2
+        gameArea = CGRect(x: margin, y: 0, width: playableWidth, height: size.height)
+        
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView) {
         // Create Background
@@ -57,6 +72,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             e.zPosition = 1
             f.zPosition = 1
             
+            a.physicsBody = SKPhysicsBody(rectangleOf: a.size)
+            b.physicsBody = SKPhysicsBody(rectangleOf: b.size)
+            c.physicsBody = SKPhysicsBody(rectangleOf: c.size)
+            d.physicsBody = SKPhysicsBody(rectangleOf: d.size)
+            e.physicsBody = SKPhysicsBody(rectangleOf: e.size)
+            f.physicsBody = SKPhysicsBody(rectangleOf: f.size)
+            a.physicsBody?.affectedByGravity = false
+            b.physicsBody?.affectedByGravity = false
+            c.physicsBody?.affectedByGravity = false
+            d.physicsBody?.affectedByGravity = false
+            e.physicsBody?.affectedByGravity = false
+            f.physicsBody?.affectedByGravity = false
+            a.physicsBody?.isDynamic = false
+            b.physicsBody?.isDynamic = false
+            c.physicsBody?.isDynamic = false
+            d.physicsBody?.isDynamic = false
+            e.physicsBody?.isDynamic = false
+            f.physicsBody?.isDynamic = false
+            
             addChild(a)
             addChild(b)
             addChild(c)
@@ -70,6 +104,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let platformWidth = c.size.width
         c.position = CGPoint(x: frame.size.width/2, y: 700)
         c.zPosition = 1
+        c.physicsBody = SKPhysicsBody(rectangleOf: c.size)
+        c.physicsBody?.affectedByGravity = false
+        c.physicsBody?.isDynamic = false
         addChild(c)
         
         for i in 1...6 {
@@ -78,8 +115,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             a.position = CGPoint(x: frame.size.width/2 + platformWidth*CGFloat(i), y: 700)
             b.position = CGPoint(x: frame.size.width/2 - platformWidth*CGFloat(i), y: 700)
+            
             a.zPosition = 1
             b.zPosition = 1
+            
+            a.physicsBody = SKPhysicsBody(rectangleOf: a.size)
+            b.physicsBody = SKPhysicsBody(rectangleOf: b.size)
+            a.physicsBody?.affectedByGravity = false
+            b.physicsBody?.affectedByGravity = false
+            a.physicsBody?.isDynamic = false
+            b.physicsBody?.isDynamic = false
             
             addChild(a)
             addChild(b)
@@ -87,24 +132,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let l = SKSpriteNode(imageNamed: "castleCliffLeft")
         let r = SKSpriteNode(imageNamed: "castleCliffRight")
-        l.position = CGPoint(x: frame.size.width/2 - platformWidth*7, y: 700)
-        r.position = CGPoint(x: frame.size.width/2 + platformWidth*7, y: 700)
+        l.position = CGPoint(x: frame.size.width/2 - platformWidth*CGFloat(7), y: 700)
+        r.position = CGPoint(x: frame.size.width/2 + platformWidth*CGFloat(7), y: 700)
         l.zPosition = 1
         r.zPosition = 1
+        l.physicsBody = SKPhysicsBody(rectangleOf: l.size)
+        r.physicsBody = SKPhysicsBody(rectangleOf: r.size)
+        l.physicsBody?.affectedByGravity = false
+        r.physicsBody?.affectedByGravity = false
+        l.physicsBody?.isDynamic = false
+        r.physicsBody?.isDynamic = false
         addChild(l)
         addChild(r)
     }
     
     func makePlayer() {
-        let player = SKSpriteNode(imageNamed: "8BitDrake")
         player.position = CGPoint(x: frame.size.width/2, y: 900)
         player.zPosition = 2
         player.setScale(0.5)
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
         addChild(player)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Nothing Yet
+        let touchXPosition = (touches.first?.location(in: self).x)!
+        if(player.position.x < touchXPosition) {
+            moveDirection = "Right"
+        }
+        if(player.position.x > touchXPosition) {
+            moveDirection = "Left"
+        }
+        touchingScreen = true
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        touchingScreen = false
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -113,5 +176,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        // Move Player
+        if (touchingScreen) {
+            if(moveDirection == "Right") {
+                player.position.x += 5
+            }
+            if(moveDirection == "Left") {
+                player.position.x -= 5
+            }
+        }
+        // Teleport Player
+        if(player.position.x > frame.size.width) {
+            player.position.x = 0
+        }
+        if(player.position.x < 0) {
+            player.position.x = frame.size.width
+        }
+        if(player.position.y < 0) {
+            player.position.y = frame.size.height
+        }
     }
 }
