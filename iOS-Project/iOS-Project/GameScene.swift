@@ -12,10 +12,20 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let player = SKSpriteNode(imageNamed: "8BitDrake")
+    var firstTouch = 0
+    var grounded = true
+    var numJumps = 0
     var touchingScreen = false
-    var moveDirection = "None"
+    var moveDirection = "Left"
     var gameArea: CGRect
     
+    struct PhysicsCategories {
+        static let None : UInt32 = 0x1 << 1
+        static let Player : UInt32 = 0x1 << 2
+        static let Ground : UInt32 = 0x1 << 3
+        static let Enemy : UInt32 = 0x1 << 4
+    }
+
     override init(size: CGSize) {
         let maxAspectRatio: CGFloat = 16.0/9.0
         let playableWidth = size.height / maxAspectRatio
@@ -102,7 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Make Center Platform
         let c = SKSpriteNode(imageNamed: "castleMid")
         let platformWidth = c.size.width
-        c.position = CGPoint(x: frame.size.width/2, y: 700)
+        c.position = CGPoint(x: frame.size.width/2, y: 750)
         c.zPosition = 1
         c.physicsBody = SKPhysicsBody(rectangleOf: c.size)
         c.physicsBody?.affectedByGravity = false
@@ -113,8 +123,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let a = SKSpriteNode(imageNamed: "castleMid")
             let b = SKSpriteNode(imageNamed: "castleMid")
             
-            a.position = CGPoint(x: frame.size.width/2 + platformWidth*CGFloat(i), y: 700)
-            b.position = CGPoint(x: frame.size.width/2 - platformWidth*CGFloat(i), y: 700)
+            a.position = CGPoint(x: frame.size.width/2 + platformWidth*CGFloat(i), y: 750)
+            b.position = CGPoint(x: frame.size.width/2 - platformWidth*CGFloat(i), y: 750)
             
             a.zPosition = 1
             b.zPosition = 1
@@ -132,8 +142,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let l = SKSpriteNode(imageNamed: "castleCliffLeft")
         let r = SKSpriteNode(imageNamed: "castleCliffRight")
-        l.position = CGPoint(x: frame.size.width/2 - platformWidth*CGFloat(7), y: 700)
-        r.position = CGPoint(x: frame.size.width/2 + platformWidth*CGFloat(7), y: 700)
+        l.position = CGPoint(x: frame.size.width/2 - platformWidth*CGFloat(7), y: 750)
+        r.position = CGPoint(x: frame.size.width/2 + platformWidth*CGFloat(7), y: 750)
         l.zPosition = 1
         r.zPosition = 1
         l.physicsBody = SKPhysicsBody(rectangleOf: l.size)
@@ -147,31 +157,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func makePlayer() {
+        // Draw Body
         player.position = CGPoint(x: frame.size.width/2, y: 900)
         player.zPosition = 2
         player.setScale(0.5)
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        player.physicsBody?.allowsRotation = false
         addChild(player)
     }
     
+    func playerJump() {
+        player.physicsBody?.velocity = CGVector(dx: (player.physicsBody?.velocity.dx)!/3, dy: 0)
+        player.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: 250))
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touchingScreen {
+            playerJump()
+        }
+        
         let touchXPosition = (touches.first?.location(in: self).x)!
-        if(player.position.x < touchXPosition) {
+        // Set direction of movement and face player character the correct direction
+        if(player.position.x < touchXPosition && !touchingScreen) {
+            if(moveDirection == "Left") {
+                player.xScale = player.xScale * -1
+            }
             moveDirection = "Right"
         }
-        if(player.position.x > touchXPosition) {
+        if(player.position.x > touchXPosition && !touchingScreen) {
+            if(moveDirection == "Right") {
+                player.xScale = player.xScale * -1
+            }
             moveDirection = "Left"
         }
-        touchingScreen = true
+        
+        if(!touchingScreen) {
+            firstTouch = (touches.first?.hashValue)!
+            touchingScreen = true
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if(firstTouch == touches.first?.hashValue) {
+            touchingScreen = false
+        }
         super.touchesEnded(touches, with: event)
-        touchingScreen = false
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Nothing Yet
     }
     
     override func update(_ currentTime: TimeInterval) {
