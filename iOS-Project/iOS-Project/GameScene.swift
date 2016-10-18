@@ -11,76 +11,105 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var background = SKSpriteNode(imageNamed: "bg_forest")
-    
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
     override func didMove(to view: SKView) {
+        // Create Background
+        let background = SKSpriteNode(imageNamed: "bg_forest")
         background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
         background.size.width = frame.size.width
         background.size.height = frame.size.height
+        background.zPosition = 0
         addChild(background)
-
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
+        // Create Platforms
+        makePlatforms()
+        
+        // Create Player
+        makePlayer()
+    }
+    
+    func makePlatforms() {
+        // Make Floor
+        let z = SKSpriteNode(imageNamed: "castleMid")
+        let floorWidth = z.size.width
+        
+        for i in 2...15 {
+            let a = SKSpriteNode(imageNamed: "castleMid")
+            let b = SKSpriteNode(imageNamed: "castleMid")
+            let c = SKSpriteNode(imageNamed: "castleCenter")
+            let d = SKSpriteNode(imageNamed: "castleCenter")
+            let e = SKSpriteNode(imageNamed: "castleCenter")
+            let f = SKSpriteNode(imageNamed: "castleCenter")
             
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(M_PI), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
+            a.position = CGPoint(x: frame.size.width/2 + floorWidth*CGFloat(i), y: 350)
+            b.position = CGPoint(x: frame.size.width/2 - floorWidth*CGFloat(i), y: 350)
+            c.position = CGPoint(x: frame.size.width/2 + floorWidth*CGFloat(i), y: 350 - floorWidth)
+            d.position = CGPoint(x: frame.size.width/2 - floorWidth*CGFloat(i), y: 350 - floorWidth)
+            e.position = CGPoint(x: frame.size.width/2 + floorWidth*CGFloat(i), y: 350 - floorWidth*2)
+            f.position = CGPoint(x: frame.size.width/2 - floorWidth*CGFloat(i), y: 350 - floorWidth*2)
+            
+            a.zPosition = 1
+            b.zPosition = 1
+            c.zPosition = 1
+            d.zPosition = 1
+            e.zPosition = 1
+            f.zPosition = 1
+            
+            addChild(a)
+            addChild(b)
+            addChild(c)
+            addChild(d)
+            addChild(e)
+            addChild(f)
         }
+        
+        // Make Center Platform
+        let c = SKSpriteNode(imageNamed: "castleMid")
+        let platformWidth = c.size.width
+        c.position = CGPoint(x: frame.size.width/2, y: 700)
+        c.zPosition = 1
+        addChild(c)
+        
+        for i in 1...6 {
+            let a = SKSpriteNode(imageNamed: "castleMid")
+            let b = SKSpriteNode(imageNamed: "castleMid")
+            
+            a.position = CGPoint(x: frame.size.width/2 + platformWidth*CGFloat(i), y: 700)
+            b.position = CGPoint(x: frame.size.width/2 - platformWidth*CGFloat(i), y: 700)
+            a.zPosition = 1
+            b.zPosition = 1
+            
+            addChild(a)
+            addChild(b)
+        }
+        
+        let l = SKSpriteNode(imageNamed: "castleCliffLeft")
+        let r = SKSpriteNode(imageNamed: "castleCliffRight")
+        l.position = CGPoint(x: frame.size.width/2 - platformWidth*7, y: 700)
+        r.position = CGPoint(x: frame.size.width/2 + platformWidth*7, y: 700)
+        l.zPosition = 1
+        r.zPosition = 1
+        addChild(l)
+        addChild(r)
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+    func makePlayer() {
+        let player = SKSpriteNode(imageNamed: "8BitDrake")
+        player.position = CGPoint(x: frame.size.width/2, y: 900)
+        player.zPosition = 2
+        player.setScale(0.5)
+        addChild(player)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        // Nothing Yet
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        // Nothing Yet
     }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
