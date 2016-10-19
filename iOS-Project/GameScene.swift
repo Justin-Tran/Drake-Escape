@@ -11,10 +11,10 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var enemyArr:[SKSpriteNode] = [SKSpriteNode]()
     let player = SKSpriteNode(imageNamed: "8BitDrake")
     var firstTouch = 0
-    var grounded = true
-    var numJumps = 0
+    var frameCount = 0
     var touchingScreen = false
     var moveDirection = "Left"
     var gameArea: CGRect
@@ -24,6 +24,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let Player : UInt32 = 0x1 << 2
         static let Ground : UInt32 = 0x1 << 3
         static let Enemy : UInt32 = 0x1 << 4
+    }
+    
+    func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+    func random(min:CGFloat, max: CGFloat) -> CGFloat {
+        return random() * (max - min) + min
     }
 
     override init(size: CGSize) {
@@ -53,6 +60,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Create Player
         makePlayer()
+        
+        // Spawn Enemies via Time Interval
+        let spawn = SKAction.run(makeEnemy)
+        let waitToSpawn = SKAction.wait(forDuration: 5)
+        let spawnSequence = SKAction.sequence([waitToSpawn, spawn])
+        let spawnForever = SKAction.repeatForever(spawnSequence)
+        self.run(spawnForever, withKey: "spawningEnemies")
+
     }
     
     func playerJump() {
@@ -61,6 +76,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Make Enemy when screen tapped (Temporary)
+        //makeEnemy()
+        
         if touchingScreen {
             playerJump()
         }
@@ -95,6 +113,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        frameCount += 1
+        if(frameCount > 180) {
+            frameCount = 0
+        }
         
         // Move Player
         if (touchingScreen) {
@@ -114,6 +136,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if(player.position.y < 0) {
             player.position.y = frame.size.height
+        }
+        
+        // Move Enemy
+        for enemy in enemyArr {
+            var dy = 0
+            if(frameCount == 180) {
+                print(enemy)
+                dy = 150
+            }
+            enemy.physicsBody?.applyImpulse(CGVector(dx: 0, dy: CGFloat(dy)))
+            var dx = 0
+            if(player.position.x - enemy.position.x > 0) {
+                dx = 120
+            }
+            else {
+                dx = -120
+            }
+            enemy.physicsBody?.velocity.dx = CGFloat(dx)
+            if enemy.position.y < -10 {
+                enemy.removeFromParent()
+                enemyArr.remove(at: enemyArr.index(of: enemy)!)
+            }
         }
     }
     
@@ -264,7 +308,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func makePlayer() {
-        // Draw Body
         player.position = CGPoint(x: frame.size.width/2, y: 900)
         player.zPosition = 2
         player.setScale(0.5)
@@ -272,4 +315,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.allowsRotation = false
         addChild(player)
     }
+    
+    func makeEnemy() {
+        let enemy = SKSpriteNode(imageNamed: "bulbasaur")
+        let eStartX = random(min: 10, max: CGFloat(frame.size.width-10))
+        let eStartY = CGFloat(1500)
+        enemy.position = CGPoint(x: eStartX, y: eStartY)
+        enemy.zPosition = 2
+        enemy.setScale(0.15)
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
+        enemyArr.append(enemy)
+        addChild(enemy)
+    }
+
 }
