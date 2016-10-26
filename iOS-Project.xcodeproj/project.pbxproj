@@ -18,6 +18,12 @@
 		3D889CBB1D9DDEF7002F8C6E /* iOS_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889CBA1D9DDEF7002F8C6E /* iOS_ProjectTests.swift */; };
 		3D889CC61D9DDEF7002F8C6E /* iOS_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889CC51D9DDEF7002F8C6E /* iOS_ProjectUITests.swift */; };
 		3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */; };
+		68E96A0A1DC12B5600766BF3 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E96A091DC12B5600766BF3 /* GameOverViewController.swift */; };
+		68E96A0C1DC12B9500766BF3 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E96A0B1DC12B9500766BF3 /* StartScreenViewController.swift */; };
+		68E96A0E1DC15DB900766BF3 /* Its_Too_Late.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68E96A0D1DC15DB900766BF3 /* Its_Too_Late.ttf */; };
+		68E96A101DC160B500766BF3 /* HiScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E96A0F1DC160B500766BF3 /* HiScoreTableViewController.swift */; };
+		68E96A121DC163FA00766BF3 /* TopHiScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E96A111DC163FA00766BF3 /* TopHiScoreTableViewCell.swift */; };
+		68E96A141DC1640600766BF3 /* HiScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E96A131DC1640600766BF3 /* HiScoreTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,12 @@
 		3D889CC51D9DDEF7002F8C6E /* iOS_ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ProjectUITests.swift; sourceTree = "<group>"; };
 		3D889CC71D9DDEF7002F8C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = theBoldFont.ttf; sourceTree = "<group>"; };
+		68E96A091DC12B5600766BF3 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		68E96A0B1DC12B9500766BF3 /* StartScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
+		68E96A0D1DC15DB900766BF3 /* Its_Too_Late.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Its_Too_Late.ttf; sourceTree = "<group>"; };
+		68E96A0F1DC160B500766BF3 /* HiScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiScoreTableViewController.swift; sourceTree = "<group>"; };
+		68E96A111DC163FA00766BF3 /* TopHiScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopHiScoreTableViewCell.swift; sourceTree = "<group>"; };
+		68E96A131DC1640600766BF3 /* HiScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiScoreTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +127,12 @@
 				3D889CB11D9DDEF7002F8C6E /* Info.plist */,
 				3D889CAC1D9DDEF7002F8C6E /* Assets.xcassets */,
 				3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */,
+				68E96A0D1DC15DB900766BF3 /* Its_Too_Late.ttf */,
+				68E96A091DC12B5600766BF3 /* GameOverViewController.swift */,
+				68E96A0B1DC12B9500766BF3 /* StartScreenViewController.swift */,
+				68E96A0F1DC160B500766BF3 /* HiScoreTableViewController.swift */,
+				68E96A111DC163FA00766BF3 /* TopHiScoreTableViewCell.swift */,
+				68E96A131DC1640600766BF3 /* HiScoreTableViewCell.swift */,
 			);
 			path = "iOS-Project";
 			sourceTree = "<group>";
@@ -247,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68E96A0E1DC15DB900766BF3 /* Its_Too_Late.ttf in Resources */,
 				3D889CAB1D9DDEF7002F8C6E /* Main.storyboard in Resources */,
 				3D889CA21D9DDEF7002F8C6E /* GameScene.sks in Resources */,
 				3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */,
@@ -277,9 +296,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68E96A0A1DC12B5600766BF3 /* GameOverViewController.swift in Sources */,
 				3D889CA61D9DDEF7002F8C6E /* GameScene.swift in Sources */,
 				3D889CA81D9DDEF7002F8C6E /* GameViewController.swift in Sources */,
+				68E96A121DC163FA00766BF3 /* TopHiScoreTableViewCell.swift in Sources */,
 				3D889CA01D9DDEF7002F8C6E /* AppDelegate.swift in Sources */,
+				68E96A141DC1640600766BF3 /* HiScoreTableViewCell.swift in Sources */,
+				68E96A101DC160B500766BF3 /* HiScoreTableViewController.swift in Sources */,
+				68E96A0C1DC12B9500766BF3 /* StartScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

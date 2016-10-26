@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var gameViewControl: UIViewController? = nil
     var enemyArr:[SKSpriteNode] = [SKSpriteNode]()
     let player = SKSpriteNode(imageNamed: "8BitDrake")
     let heart_1 = SKSpriteNode(imageNamed: "heart")
@@ -163,8 +164,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func gameOver() {
         // include segueway to Game Over Screen
+        
         print("GAME OVER")
         print("SCORE: " + String(gameScore))
+        gameViewControl?.performSegue(withIdentifier: "gameOverID", sender: gameViewControl!)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

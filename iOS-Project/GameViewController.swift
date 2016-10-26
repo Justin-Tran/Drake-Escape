@@ -27,9 +27,10 @@ class GameViewController: UIViewController {
         /* Set the scale mode to scale to fit the window */
         scene.scaleMode = .aspectFill
         
+        scene.gameViewControl = self
         skView.presentScene(scene)
     }
-
+    
     override var shouldAutorotate: Bool {
         return true
     }
