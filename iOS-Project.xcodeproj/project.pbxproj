@@ -223,7 +223,7 @@
 				TargetAttributes = {
 					3D889C9B1D9DDEF7002F8C6E = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = JPEZJUUYRY;
+						DevelopmentTeam = T26MH877KL;
 						ProvisioningStyle = Automatic;
 					};
 					3D889CB51D9DDEF7002F8C6E = {
@@ -455,10 +455,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JPEZJUUYRY;
+				DEVELOPMENT_TEAM = T26MH877KL;
 				INFOPLIST_FILE = "iOS-Project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cs378.iOS-Project";
+				PRODUCT_BUNDLE_IDENTIFIER = "iOS-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -469,10 +469,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JPEZJUUYRY;
+				DEVELOPMENT_TEAM = T26MH877KL;
 				INFOPLIST_FILE = "iOS-Project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cs378.iOS-Project";
+				PRODUCT_BUNDLE_IDENTIFIER = "iOS-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

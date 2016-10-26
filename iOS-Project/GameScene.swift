@@ -168,8 +168,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("GAME OVER")
         print("SCORE: " + String(gameScore))
         gameViewControl?.performSegue(withIdentifier: "gameOverID", sender: gameViewControl!)
+        self.removeAllActions()
+        self.removeAllChildren()
+        gameViewControl?.removeFromParentViewController()
     }
     
+    deinit {
+        print("mama we made it")
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Make Enemy when screen tapped (Temporary)
         //makeEnemy()
