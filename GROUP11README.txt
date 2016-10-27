@@ -4,6 +4,7 @@ Justin Tran: 33%
 Developed the game world and functionality including: PhysicsBodies for the player, enemies, and platforms, health, score system, enemy following, collision detection, limited jumping ability, randomly spawning enemies, and teleportation, and throwable object (double tapping).
 
 Rambo Wu: 33%
+Developed and implemented UI for the game including view controllers and UI items. Worked on backend for view controllers and also for the game scene itself. Fixed bugs with game and app. 
 
 Rachelle Rogers: 33%
 Developed graphics and UI elements for the game including pixelated enemies, start button, trophy, all labels/text with “It’s Too Late” font. Searched for temporary background and worked on the overall design elements and aspect. 
