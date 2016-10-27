@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var gameViewControl: UIViewController? = nil
+    var gameViewControl: GameViewController? = nil
     var enemyArr:[SKSpriteNode] = [SKSpriteNode]()
     let player = SKSpriteNode(imageNamed: "8BitDrake")
     let heart_1 = SKSpriteNode(imageNamed: "heart")
@@ -24,7 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var touchingScreen = false
     var moveDirection = "Left"
     let scoreLabel = SKLabelNode(fontNamed: "The Bold Font")
-    var gameScore = 0
+    var gameScore: Int = 0
     var gameArea: CGRect
     
     struct PhysicsCategories {
@@ -163,22 +163,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func gameOver() {
-        // include segueway to Game Over Screen
-        
-        print("GAME OVER")
-        print("SCORE: " + String(gameScore))
+        // segues to game over screen and deallocates sprites
         gameViewControl?.performSegue(withIdentifier: "gameOverID", sender: gameViewControl!)
         self.removeAllActions()
         self.removeAllChildren()
         gameViewControl?.removeFromParentViewController()
     }
-    
-    deinit {
-        print("mama we made it")
-    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Make Enemy when screen tapped (Temporary)
-        //makeEnemy()
         
         if touchingScreen {
             playerJump()

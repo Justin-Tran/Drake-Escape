@@ -13,6 +13,7 @@ class HiScoreTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameOutlet: UILabel!
     @IBOutlet weak var scoreOutlet: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -12,10 +12,12 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    var scene: GameScene? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene = GameScene(size: CGSize(width: 2048, height: 1536))
+        self.scene = GameScene(size: CGSize(width: 2048, height: 1536))
         // Configure the view.
         let skView = self.view as! SKView
         skView.showsFPS = true
@@ -25,10 +27,18 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         
         /* Set the scale mode to scale to fit the window */
-        scene.scaleMode = .aspectFill
+        self.scene?.scaleMode = .aspectFill
         
-        scene.gameViewControl = self
-        skView.presentScene(scene)
+        self.scene?.gameViewControl = self
+        skView.presentScene(self.scene)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? GameOverViewController
+        {
+            // store the score in a property of the destination view controller so it can be set in the label.
+            destination.score = "\((scene?.gameScore)!)"
+        }
     }
     
     override var shouldAutorotate: Bool {

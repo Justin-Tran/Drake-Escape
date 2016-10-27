@@ -105,32 +105,32 @@
                                     <color key="backgroundColor" red="0.69806998890000005" green="0.69469767010000005" blue="0.70144230770000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hiScoreID" textLabel="Nzi-Ef-11A" detailTextLabel="qMx-Tp-FyC" style="IBUITableViewCellStyleValue1" id="peA-Ua-i7d" customClass="HiScoreTableViewCell" customModule="iOS_Project" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hiScoreID" id="peA-Ua-i7d" customClass="HiScoreTableViewCell" customModule="iOS_Project" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="667" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peA-Ua-i7d" id="2R8-io-QBC">
                                     <frame key="frameInset" width="667" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nzi-Ef-11A">
-                                            <frame key="frameInset" minX="15" minY="14" width="70" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCORE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blU-Ok-qEs">
+                                            <frame key="frameInset" minX="559" minY="2" width="100" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="30"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="SCORE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qMx-Tp-FyC">
-                                            <frame key="frameInset" minX="610" minY="14" width="42" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USERNAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUQ-MH-kuZ">
+                                            <frame key="frameInset" minX="5" minY="2" width="150" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="30"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="scoreOutlet" destination="qMx-Tp-FyC" id="bBz-0E-jkc"/>
-                                    <outlet property="usernameOutlet" destination="Nzi-Ef-11A" id="RRe-ZP-PgM"/>
+                                    <outlet property="scoreOutlet" destination="blU-Ok-qEs" id="zRW-Ac-VTM"/>
+                                    <outlet property="usernameOutlet" destination="VUQ-MH-kuZ" id="WmI-N4-6Qw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -142,7 +142,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5JN-7W-e2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343" y="-778"/>
+            <point key="canvasLocation" x="342.27886056971516" y="-778.39999999999998"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -211,6 +211,9 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
+                    <connections>
+                        <outlet property="scoreOutlet" destination="5G8-7C-mja" id="Ae1-Ei-VAo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpR-zy-2Lr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,6 +244,6 @@
         <image name="trophy" width="500" height="537"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hko-Hg-ode"/>
+        <segue reference="L83-Oj-Jfc"/>
     </inferredMetricsTieBreakers>
 </document>

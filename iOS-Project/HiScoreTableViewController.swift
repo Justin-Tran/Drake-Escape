@@ -9,6 +9,9 @@
 import UIKit
 
 class HiScoreTableViewController: UITableViewController {
+    
+    let userScoreDict: [String: Int] = ["rambowu" : 9500000, "justintran" : 9000500, "rachellerogers" : 8950100, "aubreygraham" : 6666666,"kanyewest" : 6666500, "anon123" : 1555000, "notdrake" : 666666, "therealkanye" : 150000]
+    let usernameArray: [String] = ["","","rambowu","justintran","rachellerogers","aubreygraham","kanyewest","anon123","notdrake","therealkanye"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +37,7 @@ class HiScoreTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return 10
     }
 
     
@@ -51,11 +54,25 @@ class HiScoreTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "hiScoreID", for: indexPath)
         }
         
+        // Makes every other cell light gray for better UI look
         if indexPath.row % 2 == 0
         {
             cell?.backgroundColor = UIColor.lightGray
         }
-        // Configure the cell...
+        
+        // Temporary high score data because our database is not set up yet
+        // Delete when finished
+        
+        if indexPath.row > 1
+        {
+            let username: String = usernameArray[indexPath.row]
+            let userCell = cell as! HiScoreTableViewCell
+            userCell.usernameOutlet.font = UIFont(name: userCell.usernameOutlet.font.fontName, size: 18.0)
+            userCell.scoreOutlet.font = UIFont(name: userCell.usernameOutlet.font.fontName, size: 18.0)
+            userCell.usernameOutlet.text = username
+            userCell.scoreOutlet.text = "\(userScoreDict[username]!)"
+        }
+        
         return cell!
     }
  
