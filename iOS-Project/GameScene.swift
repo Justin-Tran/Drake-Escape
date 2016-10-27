@@ -20,7 +20,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var numLives = 3
     var numJumps = 0
     var firstTouch = 0
-    var frameCount = 0
     var touchingScreen = false
     var moveDirection = "Left"
     let scoreLabel = SKLabelNode(fontNamed: "The Bold Font")
@@ -123,6 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Enemy {
             // player and enemy make contact
             loseLife()
+            body2.collisionBitMask = PhysicsCategories.None
         }
 
     }
@@ -205,12 +205,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        frameCount += 1
-        if(frameCount > 180) {
-            frameCount = 0
-        }
-        
         // Move Player
         if (touchingScreen) {
             if(moveDirection == "Right") {
@@ -233,23 +227,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Move Enemy
         for enemy in enemyArr {
-            var dy = 0
-            if(frameCount == 180) {
-                dy = 200
-            }
-            enemy.physicsBody?.applyImpulse(CGVector(dx: 0, dy: CGFloat(dy)))
             var dx = 0
-            if(player.position.x - enemy.position.x > 0) {
+            if(player.position.x - enemy.position.x > 20) {
                 dx = 120
                 if(enemy.xScale > 0) {
                     enemy.xScale = enemy.xScale * -1
                 }
             }
-            else {
+            else if (player.position.x - enemy.position.x < -20) {
                 dx = -120
                 if(enemy.xScale < 0) {
                     enemy.xScale = enemy.xScale * -1
                 }
+            }
+            else {
+                dx = 0
             }
             enemy.physicsBody?.velocity.dx = CGFloat(dx)
             if enemy.position.y < -10 {
@@ -311,7 +303,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             b.physicsBody!.categoryBitMask = PhysicsCategories.Ground
             b.physicsBody!.collisionBitMask = PhysicsCategories.Player | PhysicsCategories.Enemy
             b.physicsBody!.contactTestBitMask = PhysicsCategories.None
-
+            c.physicsBody!.categoryBitMask = PhysicsCategories.Ground
+            d.physicsBody!.categoryBitMask = PhysicsCategories.Ground
+            e.physicsBody!.categoryBitMask = PhysicsCategories.Ground
+            f.physicsBody!.categoryBitMask = PhysicsCategories.Ground
             
             addChild(a)
             addChild(b)
@@ -471,7 +466,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
         enemy.physicsBody?.allowsRotation = false
         enemy.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
-        enemy.physicsBody!.collisionBitMask = PhysicsCategories.Ground
+        enemy.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
         enemy.physicsBody!.contactTestBitMask = PhysicsCategories.Player
 
         enemyArr.append(enemy)
