@@ -22,4 +22,4 @@ None.
 Any special instructions needed to make sure your app can be built
 and run. For example, if you use CocoaPods - the minimum version to use.
 
-None
+Please run app on actual iPhone. Not all capabilities are adaptable for the game on the simulator.
