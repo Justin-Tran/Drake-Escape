@@ -1,7 +1,7 @@
 1. Implementation Contributions: A list of the team members that shows each members overall contribution to this release and a list of what features/functions they worked on.
 
 Justin Tran: 33%
-Developed the game world and functionality including: PhysicsBodies for the player, enemies, and platforms, health, score system, enemy following, collision detection, limited jumping ability, randomly spawning enemies, and teleportation.
+Developed the game world and functionality including: PhysicsBodies for the player, enemies, and platforms, health, score system, enemy following, collision detection, limited jumping ability, randomly spawning enemies, and teleportation, and throwable object (double tapping).
 
 Rambo Wu: 33%
 
