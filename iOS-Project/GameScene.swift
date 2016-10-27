@@ -14,6 +14,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameViewControl: GameViewController? = nil
     var enemyArr:[SKSpriteNode] = [SKSpriteNode]()
     let player = SKSpriteNode(imageNamed: "8BitDrake")
+    let album = SKSpriteNode(imageNamed: "fireAlbum")
+    var hasAlbum = true
     let heart_1 = SKSpriteNode(imageNamed: "heart")
     let heart_2 = SKSpriteNode(imageNamed: "heart")
     let heart_3 = SKSpriteNode(imageNamed: "heart")
@@ -31,6 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let Ground : UInt32 = 0x1 << 1
         static let Player : UInt32 = 0x1 << 2
         static let Enemy : UInt32 = 0x1 << 3
+        static let Album : UInt32 = 0x1 << 4
     }
     
     func random() -> CGFloat {
@@ -113,18 +116,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             body1 = contact.bodyB
             body2 = contact.bodyA
         }
-        
+        // player and ground make contact
         if body1.categoryBitMask == PhysicsCategories.Ground && body2.categoryBitMask == PhysicsCategories.Player {
-            // player and ground make contact
             numJumps = 0
         }
-        
+        // player and enemy make contact
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Enemy {
-            // player and enemy make contact
             loseLife()
             body2.collisionBitMask = PhysicsCategories.None
+            body2.categoryBitMask = PhysicsCategories.None
         }
-
+        // album and enemy make contact
+        if body1.categoryBitMask == PhysicsCategories.Enemy && body2.categoryBitMask == PhysicsCategories.Album {
+            body1.collisionBitMask = PhysicsCategories.None
+            body1.categoryBitMask = PhysicsCategories.None
+        }
+        // player and album make contact
+        if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Album {
+            hasAlbum = true
+        }
     }
     
     func playerJump() {
@@ -162,6 +172,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func throwAlbum(_ direction: String) {
+        hasAlbum = false
+        album.isHidden = false
+        if(direction == "Right") {
+            album.physicsBody?.velocity =  CGVector(dx: 0, dy: 0)
+            album.physicsBody?.applyImpulse(CGVector(dx: 175, dy: 100))
+        }
+        else {
+            album.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            album.physicsBody?.applyImpulse(CGVector(dx: -175, dy: 100))
+        }
+    }
+    
     func gameOver() {
         // segues to game over screen and deallocates sprites
         gameViewControl?.performSegue(withIdentifier: "gameOverID", sender: gameViewControl!)
@@ -171,12 +194,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touchXPosition = (touches.first?.location(in: self).x)!
+        let tapCount = (touches.first?.tapCount)!
         
-        if touchingScreen {
+        // Throw Album
+        if(hasAlbum && tapCount > 1) {
+            if(touchXPosition > player.position.x) {
+                throwAlbum("Right")
+            }
+            else {
+                throwAlbum("Left")
+            }
+        }
+        // Jump only if already moving
+        if(touchingScreen) {
             playerJump()
         }
-        
-        let touchXPosition = (touches.first?.location(in: self).x)!
         // Set direction of movement and face player character the correct direction
         if(player.position.x < touchXPosition && !touchingScreen) {
             if(moveDirection == "Left") {
@@ -206,13 +239,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Move Player
-        if (touchingScreen) {
+        if(touchingScreen) {
             if(moveDirection == "Right") {
                 player.position.x += 5
             }
             if(moveDirection == "Left") {
                 player.position.x -= 5
             }
+        }
+        // Move Album
+        if(hasAlbum) {
+            album.isHidden = true
+            album.position = player.position
         }
         // Teleport Player
         if(player.position.x > frame.size.width) {
@@ -224,6 +262,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(player.position.y < 0) {
             player.position.y = frame.size.height
         }
+        
+        // Teleport Album
+        if(album.position.x > frame.size.width) {
+            album.position.x = 0
+        }
+        if(album.position.x < 0) {
+            album.position.x = frame.size.width
+        }
+        if(album.position.y < 0) {
+            album.position.y = frame.size.height
+        }
+
         
         // Move Enemy
         for enemy in enemyArr {
@@ -445,6 +495,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func makePlayer() {
+        // Create Player
         player.position = CGPoint(x: frame.size.width/2, y: 900)
         player.zPosition = 2
         player.setScale(0.5)
@@ -454,6 +505,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
         player.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy | PhysicsCategories.Ground
         addChild(player)
+        
+        // Create Album
+        album.position = CGPoint(x: frame.size.width/2, y: 900)
+        album.zPosition = 2
+        album.setScale(0.07)
+        album.physicsBody = SKPhysicsBody(rectangleOf: album.size)
+        album.physicsBody!.categoryBitMask = PhysicsCategories.Album
+        album.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
+        album.physicsBody!.contactTestBitMask = PhysicsCategories.Player | PhysicsCategories.Enemy
+        addChild(album)
     }
     
     func makeEnemy() {
