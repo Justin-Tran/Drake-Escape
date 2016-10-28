@@ -25,8 +25,9 @@ and run. For example, if you use CocoaPods - the minimum version to use.
 Please run app on actual iPhone. Not all capabilities are adaptable for the game on the simulator.
 
 How to Play:
-- Hold touch to left or right of character to move in a partiulcar direction
+- Hold touch left or right of the character to move in that particular direction
 - Tap screen again while moving to jump (can double jump)
 - Double-tap to shoot a projectile. You only have one so you must pick it up to use it again.
-- Avoid touching randomly spawning paparazzi
-- Falling off the screen will spawn you on the other side
+- Avoid touching randomly spawning paparazzi, doing so will make you lose a life
+- Moving off the screen will teleport you to the other side
+- Falling in the hole will teleport you to the top
