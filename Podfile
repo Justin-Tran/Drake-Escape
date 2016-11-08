@@ -6,7 +6,8 @@ target 'iOS-Project' do
   use_frameworks!
 
   # Pods for iOS-Project
-pod 'Firebase/Core'
+  pod 'Firebase/Core'
+
   target 'iOS-ProjectTests' do
     inherit! :search_paths
     # Pods for testing
