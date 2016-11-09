@@ -574,7 +574,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func makePaparazziEnemy() {
         let enemy = SKSpriteNode(imageNamed: "paparazziEnemy")
-        let eStartX = random(min: 10, max: CGFloat(frame.size.width-10))
+        var eStartX = CGFloat(0)
+        if(player.position.x > frame.size.width/2) {
+            eStartX = random(min: 10, max: CGFloat(frame.size.width-10)/2)
+        }
+        else {
+            eStartX = random(min: CGFloat(frame.size.width-10)/2, max: CGFloat(frame.size.width-10))
+        }
         let eStartY = CGFloat(1500)
         enemy.position = CGPoint(x: eStartX, y: eStartY)
         enemy.zPosition = 2
@@ -591,7 +597,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func makeTwitterEnemy() {
         let enemy = SKSpriteNode(imageNamed: "twitterEnemy")
-        let eStartX = random(min: 10, max: CGFloat(frame.size.width-10))
+        var eStartX = CGFloat(0)
+        if(player.position.x > frame.size.width/2) {
+            eStartX = random(min: 10, max: CGFloat(frame.size.width-10)/2)
+        }
+        else {
+            eStartX = random(min: CGFloat(frame.size.width-10)/2, max: CGFloat(frame.size.width-10))
+        }
         let eStartY = CGFloat(1500)
         enemy.position = CGPoint(x: eStartX, y: eStartY)
         enemy.zPosition = 2
