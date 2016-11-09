@@ -12,13 +12,16 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameViewControl: GameViewController? = nil
-    var enemyArr:[SKSpriteNode] = [SKSpriteNode]()
+    var enemyPaparazziArr:[SKSpriteNode] = [SKSpriteNode]()
+    var enemyTwitterArr:[SKSpriteNode] = [SKSpriteNode]()
     let player = SKSpriteNode(imageNamed: "8BitDrake")
     let album = SKSpriteNode(imageNamed: "fireAlbum")
     var hasAlbum = true
+    var activeAlbum = false
     let heart_1 = SKSpriteNode(imageNamed: "heart")
     let heart_2 = SKSpriteNode(imageNamed: "heart")
     let heart_3 = SKSpriteNode(imageNamed: "heart")
+    var frameCount = 0
     var numLives = 3
     var numJumps = 0
     var firstTouch = 0
@@ -97,11 +100,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makePlayer()
         
         // Spawn Enemies via Time Interval
-        let spawn = SKAction.run(makeEnemy)
-        let waitToSpawn = SKAction.wait(forDuration: 5)
-        let spawnSequence = SKAction.sequence([waitToSpawn, spawn])
-        let spawnForever = SKAction.repeatForever(spawnSequence)
-        self.run(spawnForever, withKey: "spawningEnemies")
+        let spawnPaparazzi = SKAction.run(makePaparazziEnemy)
+        let waitToSpawnPaparazzi = SKAction.wait(forDuration: 10)
+        let spawnPaparazziSequence = SKAction.sequence([waitToSpawnPaparazzi, spawnPaparazzi])
+        let spawnPaparazziForever = SKAction.repeatForever(spawnPaparazziSequence)
+        self.run(spawnPaparazziForever, withKey: "spawningPaparazziEnemies")
+        
+        let spawnTwitter = SKAction.run(makeTwitterEnemy)
+        let waitToSpawnTwitter = SKAction.wait(forDuration: 25)
+        let spawnTwitterSequence = SKAction.sequence([spawnTwitter, waitToSpawnTwitter])
+        let spawnTwitterForever = SKAction.repeatForever(spawnTwitterSequence)
+        self.run(spawnTwitterForever, withKey: "spawningTwitterEnemies")
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -128,12 +137,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         // album and enemy make contact
         if body1.categoryBitMask == PhysicsCategories.Enemy && body2.categoryBitMask == PhysicsCategories.Album {
-            body1.collisionBitMask = PhysicsCategories.None
-            body1.categoryBitMask = PhysicsCategories.None
+            if(activeAlbum) {
+                activeAlbum = false
+                body1.collisionBitMask = PhysicsCategories.None
+                body1.categoryBitMask = PhysicsCategories.None
+                body2.collisionBitMask = PhysicsCategories.Ground
+            }
         }
         // player and album make contact
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Album {
             hasAlbum = true
+            album.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
         }
     }
     
@@ -174,6 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func throwAlbum(_ direction: String) {
         hasAlbum = false
+        activeAlbum = true
         album.isHidden = false
         if(direction == "Right") {
             album.physicsBody?.velocity =  CGVector(dx: 0, dy: 0)
@@ -195,10 +210,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touchXPosition = (touches.first?.location(in: self).x)!
-        let tapCount = (touches.first?.tapCount)!
+        let touchYPosition = (touches.first?.location(in: self).y)!
         
         // Throw Album
-        if(hasAlbum && tapCount > 1) {
+        if(hasAlbum && touchYPosition < frame.size.height * 0.25) {
             if(touchXPosition > player.position.x) {
                 throwAlbum("Right")
             }
@@ -238,6 +253,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        // Count Frames
+        frameCount += 1
+        
         // Move Player
         if(touchingScreen) {
             if(moveDirection == "Right") {
@@ -275,8 +293,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         
-        // Move Enemy
-        for enemy in enemyArr {
+        // Move Paparazzi Enemy
+        for enemy in enemyPaparazziArr {
             var dx = 0
             if(player.position.x - enemy.position.x > 20) {
                 dx = 120
@@ -297,9 +315,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if enemy.position.y < -10 {
                 addScore()
                 enemy.removeFromParent()
-                enemyArr.remove(at: enemyArr.index(of: enemy)!)
+                enemyPaparazziArr.remove(at: enemyPaparazziArr.index(of: enemy)!)
             }
         }
+        
+        // Move Twitter Enemy
+        if(frameCount % 30 == 0) {
+            for enemy in enemyTwitterArr {
+                if(enemy.physicsBody?.categoryBitMask != PhysicsCategories.None) {
+                    var dx = 0
+                    if(player.position.x - enemy.position.x > 20) {
+                        dx = 60
+                        if(enemy.xScale < 0) {
+                            enemy.xScale = enemy.xScale * -1
+                        }
+                    }
+                    else if (player.position.x - enemy.position.x < -20) {
+                        dx = -60
+                        if(enemy.xScale > 0) {
+                            enemy.xScale = enemy.xScale * -1
+                        }
+                    }
+                    var dy = 0
+                    if(player.position.y - enemy.position.y > 20) {
+                        dy = 200
+                    }
+                    else if (player.position.y - enemy.position.y < -20) {
+                        dy = 80
+                    }
+                    
+                    enemy.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+                    enemy.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+                    if enemy.position.y < -10 {
+                        addScore()
+                        enemy.removeFromParent()
+                        enemyTwitterArr.remove(at: enemyTwitterArr.index(of: enemy)!)
+                    }
+                }
+            }
+        }
+        
     }
     
     func makePlatforms() {
@@ -307,7 +362,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let z = SKSpriteNode(imageNamed: "castleMid")
         let floorWidth = z.size.width
         
-        for i in 2...15 {
+        for i in 1...15 {
             let a = SKSpriteNode(imageNamed: "castleMid")
             let b = SKSpriteNode(imageNamed: "castleMid")
             let c = SKSpriteNode(imageNamed: "castleCenter")
@@ -517,20 +572,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(album)
     }
     
-    func makeEnemy() {
-        let enemy = SKSpriteNode(imageNamed: "Enemy1")
+    func makePaparazziEnemy() {
+        let enemy = SKSpriteNode(imageNamed: "paparazziEnemy")
         let eStartX = random(min: 10, max: CGFloat(frame.size.width-10))
         let eStartY = CGFloat(1500)
         enemy.position = CGPoint(x: eStartX, y: eStartY)
         enemy.zPosition = 2
-        enemy.setScale(0.40)
+        enemy.setScale(0.4)
         enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
         enemy.physicsBody?.allowsRotation = false
         enemy.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
         enemy.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
         enemy.physicsBody!.contactTestBitMask = PhysicsCategories.Player
 
-        enemyArr.append(enemy)
+        enemyPaparazziArr.append(enemy)
+        addChild(enemy)
+    }
+    
+    func makeTwitterEnemy() {
+        let enemy = SKSpriteNode(imageNamed: "twitterEnemy")
+        let eStartX = random(min: 10, max: CGFloat(frame.size.width-10))
+        let eStartY = CGFloat(1500)
+        enemy.position = CGPoint(x: eStartX, y: eStartY)
+        enemy.zPosition = 2
+        enemy.setScale(0.15)
+        enemy.physicsBody = SKPhysicsBody(circleOfRadius: enemy.size.height*0.7)
+        enemy.physicsBody?.allowsRotation = false
+        enemy.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
+        enemy.physicsBody!.collisionBitMask = PhysicsCategories.Enemy
+        enemy.physicsBody!.contactTestBitMask = PhysicsCategories.Player
+        
+        enemyTwitterArr.append(enemy)
         addChild(enemy)
     }
 

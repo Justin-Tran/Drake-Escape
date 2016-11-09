@@ -283,7 +283,7 @@
 				TargetAttributes = {
 					3D889C9B1D9DDEF7002F8C6E = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = T26MH877KL;
+						DevelopmentTeam = JPEZJUUYRY;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -667,10 +667,10 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS-Project/iOS-Project.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T26MH877KL;
+				DEVELOPMENT_TEAM = JPEZJUUYRY;
 				INFOPLIST_FILE = "iOS-Project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com-ios-project";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-ios-project-justin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -685,10 +685,10 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS-Project/iOS-Project.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T26MH877KL;
+				DEVELOPMENT_TEAM = JPEZJUUYRY;
 				INFOPLIST_FILE = "iOS-Project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com-ios-project";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-ios-project-justin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
