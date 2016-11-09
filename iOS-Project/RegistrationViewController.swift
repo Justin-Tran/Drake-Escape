@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
+import FirebaseAuth
 
 class RegistrationViewController: UIViewController {
     
@@ -27,10 +27,30 @@ class RegistrationViewController: UIViewController {
         
         if emailOutlet.text != "" && passwordOutlet.text != ""
         {
-            let emailRef = self.ref.child("Email")
-            let passwordRef = self.ref.child("Password")
-            emailRef.setValue(emailOutlet.text)
-            passwordRef.setValue(passwordOutlet.text)
+            FIRAuth.auth()!.createUser(withEmail: emailOutlet.text!, password: passwordOutlet.text!, completion: { (user, error) in
+                if error == nil
+                {
+                    print("added user")
+                    // perform segue with cancel button identifier???????
+                }
+                else
+                {
+                    //its a dictionary UserInfo->error_name = ERROR_EMAIL_ALREADY_IN_USE
+                    print("hello")
+                    let code = FIRAuthErrorCode(rawValue: (error as! NSError).code)
+                    print(code!)
+                    switch code! {
+                    case .errorCodeInvalidEmail:
+                        print("invalid email")
+                    case .errorCodeEmailAlreadyInUse:
+                        print("in use")
+                    case .errorCodeWeakPassword:
+                        print("weak ass password lookin b")
+                    default:
+                        print("Error oh no \(code!)")
+                    }
+                }
+            })
         }
     }
 

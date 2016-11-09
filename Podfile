@@ -8,7 +8,8 @@ target 'iOS-Project' do
   # Pods for iOS-Project
   pod 'Firebase'
   pod 'Firebase/Database'
-
+  pod 'Firebase/Auth'
+  
   target 'iOS-ProjectTests' do
     inherit! :search_paths
     # Pods for testing

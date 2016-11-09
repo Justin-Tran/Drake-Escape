@@ -12,6 +12,9 @@ class UserInfo
 {
     var email: String?
     var password: String?
+    private
+    // Needs high score
+    // points (in game currency)
     
     init(email: String, password: String) {
         self.email = email
