@@ -68,6 +68,14 @@
                                 <color key="backgroundColor" red="1" green="0.9675691229261415" blue="0.010664361901409625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Login"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPs-TQ-d5z">
+                                <rect key="frame" x="541" y="153" width="79" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="skip2 game"/>
+                                <connections>
+                                    <segue destination="Asi-GG-ng6" kind="show" id="zqu-yR-8E5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -75,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJd-Vc-AEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-324.28785607196403" y="48.799999999999997"/>
+            <point key="canvasLocation" x="-324" y="50"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="aQe-EG-D8L">
@@ -143,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w1v-5L-2NQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-356" y="967"/>
+            <point key="canvasLocation" x="-324" y="1122"/>
         </scene>
         <!--Start Screen View Controller-->
         <scene sceneID="qwh-2h-3JW">
@@ -358,7 +366,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Jd5-Il-4o9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o76-WE-Jia">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o76-WE-Jia">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -379,6 +387,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kUC-KW-fK4"/>
-        <segue reference="L83-Oj-Jfc"/>
+        <segue reference="Hko-Hg-ode"/>
     </inferredMetricsTieBreakers>
 </document>

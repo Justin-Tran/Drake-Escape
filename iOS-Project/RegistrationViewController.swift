@@ -8,20 +8,30 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class RegistrationViewController: UIViewController {
     
-    //let ref = FIR
+    let ref = FIRDatabase.database().reference(withPath: "UserInfo")
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
     @IBAction func registerUser(_ sender: Any) {
+        
+        // If email is blank or password show a popup.
+        
+        if emailOutlet.text != "" && passwordOutlet.text != ""
+        {
+            let emailRef = self.ref.child("Email")
+            let passwordRef = self.ref.child("Password")
+            emailRef.setValue(emailOutlet.text)
+            passwordRef.setValue(passwordOutlet.text)
+        }
     }
 
     override func didReceiveMemoryWarning() {
