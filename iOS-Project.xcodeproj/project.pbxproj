@@ -20,6 +20,7 @@
 		3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */; };
 		439D51A45537CDF2B8916369 /* Pods_iOS_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9E243D17A62163DE2A13C9 /* Pods_iOS_ProjectTests.framework */; };
 		6864D9471DD2A52E005116EC /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864D9461DD2A52E005116EC /* RegistrationViewController.swift */; };
+		6864D9491DD2A76B005116EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6864D9481DD2A76B005116EC /* GoogleService-Info.plist */; };
 		68E96A0A1DC12B5600766BF3 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E96A091DC12B5600766BF3 /* GameOverViewController.swift */; };
 		68E96A0C1DC12B9500766BF3 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E96A0B1DC12B9500766BF3 /* StartScreenViewController.swift */; };
 		68E96A0E1DC15DB900766BF3 /* Its_Too_Late.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68E96A0D1DC15DB900766BF3 /* Its_Too_Late.ttf */; };
@@ -67,6 +68,7 @@
 		3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = theBoldFont.ttf; sourceTree = "<group>"; };
 		55066C0D700140BF7E2CCEC2 /* Pods-iOS-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Project/Pods-iOS-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		6864D9461DD2A52E005116EC /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		6864D9481DD2A76B005116EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68A860051DD17E980018532D /* iOS-Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS-Project.entitlements"; sourceTree = "<group>"; };
 		68E96A091DC12B5600766BF3 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		68E96A0B1DC12B9500766BF3 /* StartScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		3D889C9E1D9DDEF7002F8C6E /* iOS-Project */ = {
 			isa = PBXGroup;
 			children = (
+				6864D9481DD2A76B005116EC /* GoogleService-Info.plist */,
 				68A860051DD17E980018532D /* iOS-Project.entitlements */,
 				3D889CA11D9DDEF7002F8C6E /* GameScene.sks */,
 				3D889CA31D9DDEF7002F8C6E /* Actions.sks */,
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68E96A0E1DC15DB900766BF3 /* Its_Too_Late.ttf in Resources */,
+				6864D9491DD2A76B005116EC /* GoogleService-Info.plist in Resources */,
 				3D889CAB1D9DDEF7002F8C6E /* Main.storyboard in Resources */,
 				3D889CA21D9DDEF7002F8C6E /* GameScene.sks in Resources */,
 				3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */,
