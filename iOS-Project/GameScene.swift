@@ -18,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let album = SKSpriteNode(imageNamed: "fireAlbum")
     var hasAlbum = true
     var activeAlbum = false
+    var gamePaused = false
+    let pauseButton = SKSpriteNode(imageNamed: "pause")
     let heart_1 = SKSpriteNode(imageNamed: "heart")
     let heart_2 = SKSpriteNode(imageNamed: "heart")
     let heart_3 = SKSpriteNode(imageNamed: "heart")
@@ -80,9 +82,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreLabel)
         
         // Create Lives
-        heart_1.position = CGPoint(x: self.size.width*0.85, y: self.size.height*0.825)
-        heart_2.position = CGPoint(x: self.size.width*0.90, y: self.size.height*0.825)
-        heart_3.position = CGPoint(x: self.size.width*0.95, y: self.size.height*0.825)
+        heart_1.position = CGPoint(x: self.size.width*0.78, y: self.size.height*0.825)
+        heart_2.position = CGPoint(x: self.size.width*0.83, y: self.size.height*0.825)
+        heart_3.position = CGPoint(x: self.size.width*0.88, y: self.size.height*0.825)
         heart_1.zPosition = 100
         heart_2.zPosition = 100
         heart_3.zPosition = 100
@@ -92,6 +94,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(heart_1)
         self.addChild(heart_2)
         self.addChild(heart_3)
+        
+        // Create Pause Button
+        pauseButton.position = CGPoint(x: self.size.width*0.95, y: self.size.height*0.825)
+        pauseButton.zPosition = 100
+        pauseButton.setScale(0.20)
+        self.addChild(pauseButton)
         
         // Create Platforms
         makePlatforms()
@@ -139,6 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if body1.categoryBitMask == PhysicsCategories.Enemy && body2.categoryBitMask == PhysicsCategories.Album {
             if(activeAlbum) {
                 activeAlbum = false
+                addScore()
                 body1.collisionBitMask = PhysicsCategories.None
                 body1.categoryBitMask = PhysicsCategories.None
                 body2.collisionBitMask = PhysicsCategories.Ground
@@ -148,6 +157,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Album {
             hasAlbum = true
             album.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
+        }
+    }
+    
+    func pauseUnpauseGame() {
+        if(gamePaused) {
+            scene?.physicsWorld.speed = 1.0
+            gamePaused = false
+        }
+        else {
+            scene?.physicsWorld.speed = 0.0
+            gamePaused = true
         }
     }
     
@@ -212,149 +232,156 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let touchXPosition = (touches.first?.location(in: self).x)!
         let touchYPosition = (touches.first?.location(in: self).y)!
         
-        // Throw Album
-        if(hasAlbum && touchYPosition < frame.size.height * 0.25) {
-            if(touchXPosition > player.position.x) {
-                throwAlbum("Right")
-            }
-            else {
-                throwAlbum("Left")
-            }
-        }
-        // Jump only if already moving
-        if(touchingScreen) {
-            playerJump()
-        }
-        // Set direction of movement and face player character the correct direction
-        if(player.position.x < touchXPosition && !touchingScreen) {
-            if(moveDirection == "Left") {
-                player.xScale = player.xScale * -1
-            }
-            moveDirection = "Right"
-        }
-        if(player.position.x > touchXPosition && !touchingScreen) {
-            if(moveDirection == "Right") {
-                player.xScale = player.xScale * -1
-            }
-            moveDirection = "Left"
+        if(pauseButton.contains(touches.first!.location(in: self))) {
+            pauseUnpauseGame()
         }
         
-        if(!touchingScreen) {
-            firstTouch = (touches.first?.hash)!
-            touchingScreen = true
+        if(!gamePaused) {
+            // Throw Album
+            if(hasAlbum && touchYPosition < frame.size.height * 0.25) {
+                if(touchXPosition > player.position.x) {
+                    throwAlbum("Right")
+                }
+                else {
+                    throwAlbum("Left")
+                }
+            }
+            // Jump only if already moving
+            if(touchingScreen) {
+                playerJump()
+            }
+            // Set direction of movement and face player character the correct direction
+            if(player.position.x < touchXPosition && !touchingScreen) {
+                if(moveDirection == "Left") {
+                    player.xScale = player.xScale * -1
+                }
+                moveDirection = "Right"
+            }
+            if(player.position.x > touchXPosition && !touchingScreen) {
+                if(moveDirection == "Right") {
+                    player.xScale = player.xScale * -1
+                }
+                moveDirection = "Left"
+            }
+            
+            if(!touchingScreen) {
+                firstTouch = (touches.first?.hash)!
+                touchingScreen = true
+            }
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if(firstTouch == touches.first?.hash) {
-            touchingScreen = false
+        if(!gamePaused) {
+            if(firstTouch == touches.first?.hash) {
+                touchingScreen = false
+            }
+            super.touchesEnded(touches, with: event)
         }
-        super.touchesEnded(touches, with: event)
     }
     
     override func update(_ currentTime: TimeInterval) {
-        // Count Frames
-        frameCount += 1
-        
-        // Move Player
-        if(touchingScreen) {
-            if(moveDirection == "Right") {
-                player.position.x += 5
+        if(!gamePaused) {
+            // Count Frames
+            frameCount += 1
+            
+            // Move Player
+            if(touchingScreen) {
+                if(moveDirection == "Right") {
+                    player.position.x += 5
+                }
+                if(moveDirection == "Left") {
+                    player.position.x -= 5
+                }
             }
-            if(moveDirection == "Left") {
-                player.position.x -= 5
+            // Move Album
+            if(hasAlbum) {
+                album.isHidden = true
+                album.position = player.position
             }
-        }
-        // Move Album
-        if(hasAlbum) {
-            album.isHidden = true
-            album.position = player.position
-        }
-        // Teleport Player
-        if(player.position.x > frame.size.width) {
-            player.position.x = 0
-        }
-        if(player.position.x < 0) {
-            player.position.x = frame.size.width
-        }
-        if(player.position.y < 0) {
-            player.position.y = frame.size.height
-        }
-        
-        // Teleport Album
-        if(album.position.x > frame.size.width) {
-            album.position.x = 0
-        }
-        if(album.position.x < 0) {
-            album.position.x = frame.size.width
-        }
-        if(album.position.y < 0) {
-            album.position.y = frame.size.height
-        }
+            // Teleport Player
+            if(player.position.x > frame.size.width) {
+                player.position.x = 0
+            }
+            if(player.position.x < 0) {
+                player.position.x = frame.size.width
+            }
+            if(player.position.y < 0) {
+                player.position.y = frame.size.height
+            }
+            
+            // Teleport Album
+            if(album.position.x > frame.size.width) {
+                album.position.x = 0
+            }
+            if(album.position.x < 0) {
+                album.position.x = frame.size.width
+            }
+            if(album.position.y < 0) {
+                album.position.y = frame.size.height
+            }
 
-        
-        // Move Paparazzi Enemy
-        for enemy in enemyPaparazziArr {
-            var dx = 0
-            if(player.position.x - enemy.position.x > 20) {
-                dx = 120
-                if(enemy.xScale > 0) {
-                    enemy.xScale = enemy.xScale * -1
+            
+            // Move Paparazzi Enemy
+            for enemy in enemyPaparazziArr {
+                var dx = 0
+                if(player.position.x - enemy.position.x > 20) {
+                    dx = 120
+                    if(enemy.xScale > 0) {
+                        enemy.xScale = enemy.xScale * -1
+                    }
+                }
+                else if (player.position.x - enemy.position.x < -20) {
+                    dx = -120
+                    if(enemy.xScale < 0) {
+                        enemy.xScale = enemy.xScale * -1
+                    }
+                }
+                else {
+                    dx = 0
+                }
+                enemy.physicsBody?.velocity.dx = CGFloat(dx)
+                if enemy.position.y < -10 {
+                    enemy.removeFromParent()
+                    enemyPaparazziArr.remove(at: enemyPaparazziArr.index(of: enemy)!)
                 }
             }
-            else if (player.position.x - enemy.position.x < -20) {
-                dx = -120
-                if(enemy.xScale < 0) {
-                    enemy.xScale = enemy.xScale * -1
-                }
-            }
-            else {
-                dx = 0
-            }
-            enemy.physicsBody?.velocity.dx = CGFloat(dx)
-            if enemy.position.y < -10 {
-                addScore()
-                enemy.removeFromParent()
-                enemyPaparazziArr.remove(at: enemyPaparazziArr.index(of: enemy)!)
-            }
-        }
-        
-        // Move Twitter Enemy
-        if(frameCount % 30 == 0) {
-            for enemy in enemyTwitterArr {
-                if(enemy.physicsBody?.categoryBitMask != PhysicsCategories.None) {
-                    var dx = 0
-                    if(player.position.x - enemy.position.x > 20) {
-                        dx = 60
-                        if(enemy.xScale < 0) {
-                            enemy.xScale = enemy.xScale * -1
+            
+            // Move Twitter Enemy
+            if(frameCount % 30 == 0) {
+                for enemy in enemyTwitterArr {
+                    if(enemy.physicsBody?.categoryBitMask != PhysicsCategories.None) {
+                        var dx = 0
+                        if(player.position.x - enemy.position.x > 20) {
+                            dx = 60
+                            if(enemy.xScale < 0) {
+                                enemy.xScale = enemy.xScale * -1
+                            }
+                        }
+                        else if (player.position.x - enemy.position.x < -20) {
+                            dx = -60
+                            if(enemy.xScale > 0) {
+                                enemy.xScale = enemy.xScale * -1
+                            }
+                        }
+                        var dy = 0
+                        if(player.position.y - enemy.position.y > 20) {
+                            dy = 200
+                        }
+                        else if (player.position.y - enemy.position.y < -20) {
+                            dy = 80
+                        }
+                        
+                        enemy.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+                        enemy.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+                        if enemy.position.y < -10 {
+                            enemy.removeFromParent()
+                            enemyTwitterArr.remove(at: enemyTwitterArr.index(of: enemy)!)
                         }
                     }
-                    else if (player.position.x - enemy.position.x < -20) {
-                        dx = -60
-                        if(enemy.xScale > 0) {
-                            enemy.xScale = enemy.xScale * -1
-                        }
-                    }
-                    var dy = 0
-                    if(player.position.y - enemy.position.y > 20) {
-                        dy = 200
-                    }
-                    else if (player.position.y - enemy.position.y < -20) {
-                        dy = 80
-                    }
-                    
-                    enemy.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                    enemy.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
-                    if enemy.position.y < -10 {
-                        addScore()
-                        enemy.removeFromParent()
-                        enemyTwitterArr.remove(at: enemyTwitterArr.index(of: enemy)!)
-                    }
                 }
             }
         }
-        
     }
     
     func makePlatforms() {
@@ -573,49 +600,53 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func makePaparazziEnemy() {
-        let enemy = SKSpriteNode(imageNamed: "paparazziEnemy")
-        var eStartX = CGFloat(0)
-        if(player.position.x > frame.size.width/2) {
-            eStartX = random(min: 10, max: CGFloat(frame.size.width-10)/2)
-        }
-        else {
-            eStartX = random(min: CGFloat(frame.size.width-10)/2, max: CGFloat(frame.size.width-10))
-        }
-        let eStartY = CGFloat(1500)
-        enemy.position = CGPoint(x: eStartX, y: eStartY)
-        enemy.zPosition = 2
-        enemy.setScale(0.4)
-        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
-        enemy.physicsBody?.allowsRotation = false
-        enemy.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
-        enemy.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
-        enemy.physicsBody!.contactTestBitMask = PhysicsCategories.Player
+        if(!gamePaused){
+            let enemy = SKSpriteNode(imageNamed: "paparazziEnemy")
+            var eStartX = CGFloat(0)
+            if(player.position.x > frame.size.width/2) {
+                eStartX = random(min: 10, max: CGFloat(frame.size.width-10)/2)
+            }
+            else {
+                eStartX = random(min: CGFloat(frame.size.width-10)/2, max: CGFloat(frame.size.width-10))
+            }
+            let eStartY = CGFloat(1500)
+            enemy.position = CGPoint(x: eStartX, y: eStartY)
+            enemy.zPosition = 2
+            enemy.setScale(0.4)
+            enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
+            enemy.physicsBody?.allowsRotation = false
+            enemy.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
+            enemy.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
+            enemy.physicsBody!.contactTestBitMask = PhysicsCategories.Player
 
-        enemyPaparazziArr.append(enemy)
-        addChild(enemy)
+            enemyPaparazziArr.append(enemy)
+            addChild(enemy)
+        }
     }
     
     func makeTwitterEnemy() {
-        let enemy = SKSpriteNode(imageNamed: "twitterEnemy")
-        var eStartX = CGFloat(0)
-        if(player.position.x > frame.size.width/2) {
-            eStartX = random(min: 10, max: CGFloat(frame.size.width-10)/2)
-        }
-        else {
-            eStartX = random(min: CGFloat(frame.size.width-10)/2, max: CGFloat(frame.size.width-10))
-        }
-        let eStartY = CGFloat(1500)
-        enemy.position = CGPoint(x: eStartX, y: eStartY)
-        enemy.zPosition = 2
-        enemy.setScale(0.15)
-        enemy.physicsBody = SKPhysicsBody(circleOfRadius: enemy.size.height*0.7)
-        enemy.physicsBody?.allowsRotation = false
-        enemy.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
-        enemy.physicsBody!.collisionBitMask = PhysicsCategories.Enemy
-        enemy.physicsBody!.contactTestBitMask = PhysicsCategories.Player
+        if(!gamePaused){
+            let enemy = SKSpriteNode(imageNamed: "twitterEnemy")
+            var eStartX = CGFloat(0)
+            if(player.position.x > frame.size.width/2) {
+                eStartX = random(min: 10, max: CGFloat(frame.size.width-10)/2)
+            }
+            else {
+                eStartX = random(min: CGFloat(frame.size.width-10)/2, max: CGFloat(frame.size.width-10))
+            }
+            let eStartY = CGFloat(1500)
+            enemy.position = CGPoint(x: eStartX, y: eStartY)
+            enemy.zPosition = 2
+            enemy.setScale(0.15)
+            enemy.physicsBody = SKPhysicsBody(circleOfRadius: enemy.size.height*0.7)
+            enemy.physicsBody?.allowsRotation = false
+            enemy.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
+            enemy.physicsBody!.collisionBitMask = PhysicsCategories.Enemy
+            enemy.physicsBody!.contactTestBitMask = PhysicsCategories.Player
         
-        enemyTwitterArr.append(enemy)
-        addChild(enemy)
+            enemyTwitterArr.append(enemy)
+            addChild(enemy)
+        }
     }
 
 }
