@@ -12,7 +12,12 @@ class HiScoreTableViewController: UITableViewController {
     
     let userScoreDict: [String: Int] = ["rambowu" : 9500000, "justintran" : 9000500, "rachellerogers" : 8950100, "aubreygraham" : 6666666,"kanyewest" : 6666500, "anon123" : 1555000, "notdrake" : 666666, "therealkanye" : 150000]
     let usernameArray: [String] = ["","","rambowu","justintran","rachellerogers","aubreygraham","kanyewest","anon123","notdrake","therealkanye"]
-
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask
+    {
+        return UIInterfaceOrientationMask.landscape
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

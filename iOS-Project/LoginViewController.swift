@@ -1,18 +1,16 @@
 //
-//  RegistrationViewController.swift
+//  LoginViewController.swift
 //  iOS-Project
 //
-//  Created by Rambo Wu on 11/8/16.
+//  Created by Rambo Wu on 11/10/16.
 //  Copyright © 2016 cs378. All rights reserved.
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
 
-class RegistrationViewController: UIViewController {
-    
-    let ref = FIRDatabase.database().reference(withPath: "UserInfo")
+class LoginViewController: UIViewController {
+
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
@@ -26,24 +24,17 @@ class RegistrationViewController: UIViewController {
         passwordOutlet.isSecureTextEntry = true
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func registerUser(_ sender: Any) {
+
+    @IBAction func loginUser(_ sender: Any) {
         
         // If email is blank or password show a popup.
-        let email: String = emailOutlet.text!
-        let pass: String = passwordOutlet.text!
-        if email != "" && pass != ""
+        
+        if emailOutlet.text != "" && passwordOutlet.text != ""
         {
-            FIRAuth.auth()!.createUser(withEmail: emailOutlet.text!, password: passwordOutlet.text!, completion: { (user, error) in
+            FIRAuth.auth()!.signIn(withEmail: emailOutlet.text!, password: passwordOutlet.text!, completion: { (user, error) in
                 if error == nil
                 {
-                    print("added user")
-                    print(user!.uid)
-                    // creates user data and uses the user's uid to reference data
-                    let ref = FIRDatabase.database().reference(withPath: "users")
-                    let id = ref.child(user!.uid)
-                    id.setValue(["highScore" : 0, "points" : 0])
-                    self.performSegue(withIdentifier: "RegToLogin", sender: self)
+                    self.performSegue(withIdentifier: "LoginToStart", sender: self)
                     // perform segue with cancel button identifier???????
                 }
                 else
@@ -54,9 +45,9 @@ class RegistrationViewController: UIViewController {
                     switch code! {
                     case .errorCodeInvalidEmail:
                         print("invalid email")
-                    case .errorCodeEmailAlreadyInUse:
-                        print("in use")
-                    case .errorCodeWeakPassword:
+                    case .errorCodeUserNotFound:
+                        print("nah dawg time to register")
+                    case .errorCodeWrongPassword:
                         print("weak ass password lookin b")
                     default:
                         print("Error oh no \(code!)")
@@ -65,11 +56,13 @@ class RegistrationViewController: UIViewController {
             })
         }
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*
