@@ -10,11 +10,6 @@ import UIKit
 
 class StartScreenViewController: UIViewController {
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask
-    {
-        return UIInterfaceOrientationMask.landscape
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

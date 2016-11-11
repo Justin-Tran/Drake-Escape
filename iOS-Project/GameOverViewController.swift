@@ -19,11 +19,6 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var scoreOutlet: UILabel!
     @IBOutlet weak var highScoreOutlet: UILabel!
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask
-    {
-        return UIInterfaceOrientationMask.landscape
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

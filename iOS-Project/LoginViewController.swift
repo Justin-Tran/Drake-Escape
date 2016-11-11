@@ -14,10 +14,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask
-    {
-        return UIInterfaceOrientationMask.portrait
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,19 +35,25 @@ class LoginViewController: UIViewController {
                 }
                 else
                 {
-                    print("hello")
+                    // declares an alert controller if Firebase fails to authenticate user
+                    let alert: UIAlertController = UIAlertController(title: "Login Error", message: "temp", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                    
                     let code = FIRAuthErrorCode(rawValue: (error as! NSError).code)
                     print(code!)
                     switch code! {
                     case .errorCodeInvalidEmail:
-                        print("invalid email")
+                        alert.message = "Please enter a valid email address."
                     case .errorCodeUserNotFound:
-                        print("nah dawg time to register")
+                        alert.message = "This email address is not in use. Please register an account."
                     case .errorCodeWrongPassword:
                         print("weak ass password lookin b")
+                        alert.message = "The email address or password is incorrect. Please try again."
                     default:
-                        print("Error oh no \(code!)")
+                        // should never reach this.
+                        assert(false)
                     }
+                    self.present(alert, animated: true, completion: nil)
                 }
             })
         }

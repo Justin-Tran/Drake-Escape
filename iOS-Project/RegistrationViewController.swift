@@ -16,11 +16,6 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask
-    {
-        return UIInterfaceOrientationMask.portrait
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordOutlet.isSecureTextEntry = true
