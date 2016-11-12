@@ -1,7 +1,7 @@
 1. Implementation Contributions: A list of the team members that shows each members overall contribution to this release and a list of what features/functions they worked on.
 
 Justin Tran: 33.33%
-
+Added new varied enemy (twitter bird) with different following mechanics than the papparazzi. Added a pause button so the game and all of it's physics can be stopped at will. Changed the projectile shooting mechanic (detailed in the instructions) so that accidental shooting is less likely. Changed projectile to become inactive after one hit. General cleanup of game logic bugs.
 
 Rambo Wu: 33.33%
  
@@ -27,7 +27,9 @@ Please run app on actual iPhone. Not all capabilities are adaptable for the game
 How to Play:
 - Hold touch left or right of the character to move in that particular direction
 - Tap screen again while moving to jump (can double jump)
-- Double-tap to shoot a projectile. You only have one so you must pick it up to use it again.
-- Avoid touching randomly spawning paparazzi, doing so will make you lose a life
+- Tap anywhere on the bottom 25% (ground platform) of the screen to shoot a projectile. 
+  You only have one so you must pick it up to use it again.
+  The projectile is only active until it hits the first enemy. To make it active again, you must pick it up.
+- Avoid touching randomly spawning paparazzi or twitter birds, doing so will make you lose a life
 - Moving off the screen will teleport you to the other side
 - Falling in the hole will teleport you to the top
