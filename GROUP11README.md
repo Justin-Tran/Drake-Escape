@@ -22,6 +22,7 @@ None.
 Any special instructions needed to make sure your app can be built
 and run. For example, if you use CocoaPods - the minimum version to use.
 
+Please open 'iOS-Project.xcworkspace' instead of 'iOS-Project.xcodeproj'
 Please run app on actual iPhone. Not all capabilities are adaptable for the game on the simulator.
 You can register an account with any email or use test@test.com password : testtest to access game.
 
