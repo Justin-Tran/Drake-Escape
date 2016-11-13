@@ -4,7 +4,7 @@ Justin Tran: 33.33%
 Added new varied enemy (twitter bird) with different following mechanics than the papparazzi. Added a pause button so the game and all of it's physics can be stopped at will. Changed the projectile shooting mechanic (detailed in the instructions) so that accidental shooting is less likely. Changed projectile to become inactive after one hit. General cleanup of game logic bugs.
 
 Rambo Wu: 33.33%
- 
+Implemented views for application, linked app to Firebase database, updated highscores, added minigames and trivia, and added settings button.
 
 Rachelle Rogers: 33.33%
 Redesigned major screens including the log in, registration, and main screen. Designed and produced graphics and backgrounds for these screens, as well as the new enemy. Manipulated current graphics to place in different settings, such as changing Drake’s posture. Began to work on making the main character moveable. Also came up with a few of the multiple choice questions we're implementing.
@@ -23,6 +23,7 @@ Any special instructions needed to make sure your app can be built
 and run. For example, if you use CocoaPods - the minimum version to use.
 
 Please run app on actual iPhone. Not all capabilities are adaptable for the game on the simulator.
+You can register an account with any email or use test@test.com password : testtest to access game.
 
 How to Play:
 - Hold touch left or right of the character to move in that particular direction
