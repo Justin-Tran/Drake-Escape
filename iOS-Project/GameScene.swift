@@ -381,6 +381,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }
             }
+            if frameCount % 2000 == 0
+            {
+                pauseUnpauseGame()
+                gameViewControl?.performSegue(withIdentifier: "minigame", sender: gameViewControl!)
+                pauseUnpauseGame()
+            }
         }
     }
     

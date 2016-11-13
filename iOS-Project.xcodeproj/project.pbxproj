@@ -20,6 +20,7 @@
 		3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */; };
 		439D51A45537CDF2B8916369 /* Pods_iOS_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9E243D17A62163DE2A13C9 /* Pods_iOS_ProjectTests.framework */; };
 		68222C591DD4F3C9005E7B4D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68222C581DD4F3C9005E7B4D /* LoginViewController.swift */; };
+		6851DE511DD80FA100571286 /* TriviaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851DE501DD80FA100571286 /* TriviaViewController.swift */; };
 		6864D9471DD2A52E005116EC /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864D9461DD2A52E005116EC /* RegistrationViewController.swift */; };
 		6864D9491DD2A76B005116EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6864D9481DD2A76B005116EC /* GoogleService-Info.plist */; };
 		6864D94B1DD2AF48005116EC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864D94A1DD2AF48005116EC /* UserInfo.swift */; };
@@ -70,6 +71,7 @@
 		3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = theBoldFont.ttf; sourceTree = "<group>"; };
 		55066C0D700140BF7E2CCEC2 /* Pods-iOS-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Project/Pods-iOS-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		68222C581DD4F3C9005E7B4D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6851DE501DD80FA100571286 /* TriviaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaViewController.swift; sourceTree = "<group>"; };
 		6864D9461DD2A52E005116EC /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		6864D9481DD2A76B005116EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6864D94A1DD2AF48005116EC /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				6864D9461DD2A52E005116EC /* RegistrationViewController.swift */,
 				6864D94A1DD2AF48005116EC /* UserInfo.swift */,
 				68222C581DD4F3C9005E7B4D /* LoginViewController.swift */,
+				6851DE501DD80FA100571286 /* TriviaViewController.swift */,
 			);
 			path = "iOS-Project";
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				68E96A121DC163FA00766BF3 /* TopHiScoreTableViewCell.swift in Sources */,
 				3D889CA01D9DDEF7002F8C6E /* AppDelegate.swift in Sources */,
 				68E96A141DC1640600766BF3 /* HiScoreTableViewCell.swift in Sources */,
+				6851DE511DD80FA100571286 /* TriviaViewController.swift in Sources */,
 				68E96A101DC160B500766BF3 /* HiScoreTableViewController.swift in Sources */,
 				6864D94B1DD2AF48005116EC /* UserInfo.swift in Sources */,
 				68E96A0C1DC12B9500766BF3 /* StartScreenViewController.swift in Sources */,

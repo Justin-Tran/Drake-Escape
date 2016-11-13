@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 
 class GameOverViewController: UIViewController {
 
@@ -36,7 +35,6 @@ class GameOverViewController: UIViewController {
             }
         })
         
-        //if self.score! >
     }
 
     override func didReceiveMemoryWarning() {

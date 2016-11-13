@@ -7,17 +7,26 @@
 //
 
 import Foundation
+import Firebase
 
 class UserInfo
 {
     var email: String?
-    var password: String?
-    private
-    // Needs high score
-    // points (in game currency)
+    var highScore: Int?
+    var points: Int?
     
-    init(email: String, password: String) {
-        self.email = email
-        self.password = password
+    init(snapshot: FIRDataSnapshot)
+    {
+        let snapshotValue = snapshot.value as! NSDictionary
+        self.email = snapshotValue.value(forKey: "email") as! String?
+        self.highScore = snapshotValue.value(forKey: "highScore") as! Int?
+        self.points = snapshotValue.value(forKey: "points") as! Int?
+    }
+    
+    init(email: String, highScore: Int, points: Int)
+    {
+        self.email! = email
+        self.highScore! = highScore
+        self.points! = points
     }
 }

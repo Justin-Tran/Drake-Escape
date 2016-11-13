@@ -7,16 +7,32 @@
 //
 
 import UIKit
+import Firebase
 
 class HiScoreTableViewController: UITableViewController {
     
-    let userScoreDict: [String: Int] = ["rambowu" : 9500000, "justintran" : 9000500, "rachellerogers" : 8950100, "aubreygraham" : 6666666,"kanyewest" : 6666500, "anon123" : 1555000, "notdrake" : 666666, "therealkanye" : 150000]
-    let usernameArray: [String] = ["","","rambowu","justintran","rachellerogers","aubreygraham","kanyewest","anon123","notdrake","therealkanye"]
-    
+    var highScoreList: [UserInfo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let ref = FIRDatabase.database().reference(withPath: "users")
+        
+        ref.queryOrdered(byChild: "highScore").observeSingleEvent(of: .value, with: {(snapshot) in
 
+            var count:Int = 0
+            
+            for item in snapshot.children
+            {
+                if count >= 8
+                {
+                    break
+                }
+                let userInfoItem = UserInfo(snapshot: item as! FIRDataSnapshot)
+                self.highScoreList.append(userInfoItem)
+                count = count + 1
+            }
+            self.tableView.reloadData()
+        })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -38,7 +54,7 @@ class HiScoreTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return highScoreList.count
     }
 
     
@@ -61,17 +77,11 @@ class HiScoreTableViewController: UITableViewController {
             cell?.backgroundColor = UIColor.lightGray
         }
         
-        // Temporary high score data because our database is not set up yet
-        // Delete when finished
-        
-        if indexPath.row > 1
+        if indexPath.row > 0 && highScoreList.count > 1
         {
-            let username: String = usernameArray[indexPath.row]
-            let userCell = cell as! HiScoreTableViewCell
-            userCell.usernameOutlet.font = UIFont(name: userCell.usernameOutlet.font.fontName, size: 18.0)
-            userCell.scoreOutlet.font = UIFont(name: userCell.usernameOutlet.font.fontName, size: 18.0)
-            userCell.usernameOutlet.text = username
-            userCell.scoreOutlet.text = "\(userScoreDict[username]!)"
+            let userInfo:UserInfo = highScoreList[highScoreList.count - indexPath.row]
+            cell?.textLabel?.text = userInfo.email
+            cell?.detailTextLabel?.text = "\(userInfo.highScore!)"
         }
         
         return cell!
