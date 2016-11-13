@@ -4,7 +4,7 @@ Justin Tran: 33.33%
 Added new varied enemy (twitter bird) with different following mechanics than the papparazzi. Added a pause button so the game and all of it's physics can be stopped at will. Changed the projectile shooting mechanic (detailed in the instructions) so that accidental shooting is less likely. Changed projectile to become inactive after one hit. General cleanup of game logic bugs.
 
 Rambo Wu: 33.33%
-Implemented views for application, linked app to Firebase database, updated highscores, added minigames and trivia, and added settings button.
+Implemented views for application, linked app to Firebase database, updated highscores, added minigames and trivia (currently work but does not store game state. Will be fixed in final phase), and added settings button. Created login and registration page which allows for user to create an account with our Firebase database and stores their high score and points. 
 
 Rachelle Rogers: 33.33%
 Redesigned major screens including the log in, registration, and main screen. Designed and produced graphics and backgrounds for these screens, as well as the new enemy. Manipulated current graphics to place in different settings, such as changing Drake’s posture. Began to work on making the main character moveable. Also came up with a few of the multiple choice questions we're implementing.
