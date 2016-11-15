@@ -12,6 +12,7 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameViewControl: GameViewController? = nil
+    var backgroundMusic: SKAudioNode!
     var enemyPaparazziArr:[SKSpriteNode] = [SKSpriteNode]()
     var enemyTwitterArr:[SKSpriteNode] = [SKSpriteNode]()
     let player = SKSpriteNode(imageNamed: "8BitDrake")
@@ -62,6 +63,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        // Background Music
+        if let musicURL = Bundle.main.url(forResource: "HotlineBlingInstrumental", withExtension: "mp3") {
+            backgroundMusic = SKAudioNode(url: musicURL)
+            addChild(backgroundMusic)
+        }
         // Set Contact Delegate
         self.physicsWorld.contactDelegate = self
         // Create Background
