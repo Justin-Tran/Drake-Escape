@@ -71,7 +71,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginUser:" destination="4VN-AI-dhG" eventType="touchUpInside" id="adG-XJ-RfZ"/>
-                                    <segue destination="Asi-GG-ng6" kind="show" identifier="LoginToStart" id="e5k-Lf-PZH"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Log In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gj8-LL-vav">
@@ -99,6 +98,7 @@
                     <connections>
                         <outlet property="emailOutlet" destination="cNb-zt-ODs" id="kbq-4g-mxT"/>
                         <outlet property="passwordOutlet" destination="RSr-vI-c7H" id="9TQ-dF-bTa"/>
+                        <segue destination="Asi-GG-ng6" kind="show" identifier="LoginToStart" id="0YT-O0-F1f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJd-Vc-AEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -500,8 +500,8 @@
         <image name="trophy" width="500" height="537"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e5k-Lf-PZH"/>
-        <segue reference="Yr8-Ub-X8p"/>
         <segue reference="lZm-w8-99u"/>
+        <segue reference="Yr8-Ub-X8p"/>
+        <segue reference="0YT-O0-F1f"/>
     </inferredMetricsTieBreakers>
 </document>
