@@ -31,6 +31,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var touchingScreen = false
     var moveDirection = "Left"
     let scoreLabel = SKLabelNode(fontNamed: "The Bold Font")
+    let holdToMove = SKLabelNode(fontNamed: "The Bold Font")
+    let tapToJump = SKLabelNode(fontNamed: "The Bold Font")
+    let avoidEnemies = SKLabelNode(fontNamed: "The Bold Font")
+    let tapToFire = SKLabelNode(fontNamed: "The Bold Font")
+    let touchtoPickup = SKLabelNode(fontNamed: "The Bold Font")
     var gameScore: Int = 0
     var gameArea: CGRect
     
@@ -70,6 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         // Set Contact Delegate
         self.physicsWorld.contactDelegate = self
+        
         // Create Background
         let background = SKSpriteNode(imageNamed: "city_bg")
         background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
@@ -78,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.zPosition = 0
         addChild(background)
         
-        // Create Score
+        // Create Score Label
         scoreLabel.text = "Score: 0"
         scoreLabel.fontSize = 70
         scoreLabel.fontColor = SKColor.white
@@ -87,6 +93,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.zPosition = 100
         self.addChild(scoreLabel)
         
+        // Create Instruction Labels
+        holdToMove.text = "Hold left or right of Drake to move"
+        holdToMove.fontSize = 70
+        holdToMove.fontColor = SKColor.white
+        holdToMove.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.7)
+        holdToMove.zPosition = 100
+        holdToMove.isHidden = true
+        self.addChild(holdToMove)
+        
+        tapToJump.text = "Tap screen while moving to jump"
+        tapToJump.fontSize = 70
+        tapToJump.fontColor = SKColor.white
+        tapToJump.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.7)
+        tapToJump.zPosition = 100
+        tapToJump.isHidden = true
+        self.addChild(tapToJump)
+        
+        avoidEnemies.text = "Avoid touching enemies"
+        avoidEnemies.fontSize = 70
+        avoidEnemies.fontColor = SKColor.white
+        avoidEnemies.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.7)
+        avoidEnemies.zPosition = 100
+        avoidEnemies.isHidden = true
+        self.addChild(avoidEnemies)
+        
+        tapToFire.text = "Tap ground to shoot mixtape at enemies"
+        tapToFire.fontSize = 70
+        tapToFire.fontColor = SKColor.white
+        tapToFire.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.17)
+        tapToFire.zPosition = 100
+        tapToFire.isHidden = true
+        self.addChild(tapToFire)
+        
+        touchtoPickup.text = "Pickup mixtape to shoot again"
+        touchtoPickup.fontSize = 70
+        touchtoPickup.fontColor = SKColor.white
+        touchtoPickup.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.17)
+        touchtoPickup.zPosition = 100
+        touchtoPickup.isHidden = true
+        self.addChild(touchtoPickup)
+
         // Create Lives
         heart_1.position = CGPoint(x: self.size.width*0.78, y: self.size.height*0.825)
         heart_2.position = CGPoint(x: self.size.width*0.83, y: self.size.height*0.825)
@@ -122,7 +169,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let spawnTwitter = SKAction.run(makeTwitterEnemy)
         let waitToSpawnTwitter = SKAction.wait(forDuration: 25)
-        let spawnTwitterSequence = SKAction.sequence([spawnTwitter, waitToSpawnTwitter])
+        let spawnTwitterSequence = SKAction.sequence([waitToSpawnTwitter, spawnTwitter])
         let spawnTwitterForever = SKAction.repeatForever(spawnTwitterSequence)
         self.run(spawnTwitterForever, withKey: "spawningTwitterEnemies")
     }
@@ -245,7 +292,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(!gamePaused) {
             // Throw Album
-            if(hasAlbum && touchYPosition < frame.size.height * 0.25) {
+            if(hasAlbum && touchYPosition < frame.size.height * 0.25 && frameCount > 900) {
                 if(touchXPosition > player.position.x) {
                     throwAlbum("Right")
                 }
@@ -291,6 +338,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(!gamePaused) {
             // Count Frames
             frameCount += 1
+            
+            // Start a minigame every 33 secounds
+            if(frameCount % 2000 == 0)
+            {
+                backgroundMusic.removeFromParent()
+                pauseUnpauseGame()
+                gameViewControl?.performSegue(withIdentifier: "minigame", sender: gameViewControl!)
+                pauseUnpauseGame()
+            }
+            
+            if(frameCount < 300) {
+                holdToMove.isHidden = false
+            }
+            if(frameCount > 300 && frameCount < 600) {
+                holdToMove.isHidden = true
+                tapToJump.isHidden = false
+            }
+            if(frameCount > 600 && frameCount < 900) {
+                tapToJump.isHidden = true
+                avoidEnemies.isHidden = false
+            }
+            if(frameCount > 900 && frameCount < 1200) {
+                avoidEnemies.isHidden = true
+                tapToFire.isHidden = false
+            }
+            if(frameCount > 1200 && frameCount < 1500) {
+                tapToFire.isHidden = true
+                touchtoPickup.isHidden = false
+            }
+            if(frameCount > 1500) {
+                touchtoPickup.isHidden = true
+            }
             
             // Move Player
             if(touchingScreen) {
@@ -387,13 +466,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                     }
                 }
-            }
-            if frameCount % 2000 == 0
-            {
-                backgroundMusic.removeFromParent()
-                pauseUnpauseGame()
-                gameViewControl?.performSegue(withIdentifier: "minigame", sender: gameViewControl!)
-                pauseUnpauseGame()
             }
         }
     }
