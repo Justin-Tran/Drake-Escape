@@ -215,11 +215,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func pauseUnpauseGame() {
         if(gamePaused) {
-            scene?.physicsWorld.speed = 1.0
+            self.scene?.view?.isPaused = false
             gamePaused = false
         }
         else {
-            scene?.physicsWorld.speed = 0.0
+            self.scene?.view?.isPaused = true
             gamePaused = true
         }
     }
