@@ -215,13 +215,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func pauseUnpauseGame() {
         if(gamePaused) {
-            // scene?.physicsWorld.speed = 1.0
+            scene?.physicsWorld.speed = 1.0
             self.scene?.view?.isPaused = false
             gamePaused = false
         }
         else {
-            // scene?.physicsWorld.speed = 0.0
+            scene?.physicsWorld.speed = 1.0
             self.scene?.view?.isPaused = true
+            touchingScreen = false
             gamePaused = true
         }
     }
@@ -328,6 +329,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("ended touch")
         if(firstTouch == touches.first?.hash) {
             touchingScreen = false
         }
@@ -340,7 +342,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             frameCount += 1
             
             // Start a minigame every 33 secounds
-            if(frameCount % 300 == 0)
+            if(frameCount % 2000 == 0)
             {
                 backgroundMusic.removeFromParent()
                 pauseUnpauseGame()

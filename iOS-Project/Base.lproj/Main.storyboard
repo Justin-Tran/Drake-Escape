@@ -91,6 +91,14 @@
                                     <segue destination="ykE-jz-8dw" kind="show" id="y6P-IC-nyq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkq-GR-xIw">
+                                <rect key="frame" x="547" y="114" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="quick skip"/>
+                                <connections>
+                                    <segue destination="Asi-GG-ng6" kind="show" identifier="DELETEPLEASE" id="z7E-5d-MEI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -501,7 +509,7 @@
         <image name="trophy" width="500" height="537"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0YT-O0-F1f"/>
         <segue reference="Yr8-Ub-X8p"/>
+        <segue reference="Hko-Hg-ode"/>
     </inferredMetricsTieBreakers>
 </document>
