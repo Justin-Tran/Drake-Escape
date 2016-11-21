@@ -15,7 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backgroundMusic: SKAudioNode!
     var enemyPaparazziArr:[SKSpriteNode] = [SKSpriteNode]()
     var enemyTwitterArr:[SKSpriteNode] = [SKSpriteNode]()
-    let player = SKSpriteNode(imageNamed: "8BitDrake")
+    let player = SKSpriteNode(imageNamed: "StillDrake")
+    var runTextureArray = [SKTexture]()
     let album = SKSpriteNode(imageNamed: "fireAlbum")
     var hasAlbum = true
     var activeAlbum = false
@@ -68,6 +69,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        // Setup Texture for Drake
+        for i in 1...12 {
+            let textureName = "Run\(i)"
+            runTextureArray.append(SKTexture(imageNamed: textureName))
+        }
+        
         // Background Music
         if let musicURL = Bundle.main.url(forResource: "HotlineBlingInstrumental", withExtension: "mp3") {
             backgroundMusic = SKAudioNode(url: musicURL)
@@ -189,6 +196,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // player and ground make contact
         if body1.categoryBitMask == PhysicsCategories.Ground && body2.categoryBitMask == PhysicsCategories.Player {
             numJumps = 0
+            if(touchingScreen) {
+                player.action(forKey: "running")?.speed = 1
+            }
         }
         // player and enemy make contact
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Enemy {
@@ -228,10 +238,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playerJump() {
+        player.action(forKey: "running")?.speed = 0
+        player.texture = SKTexture(imageNamed: "Run10")
         numJumps += 1
         if(numJumps <= 2) {
             player.physicsBody?.velocity = CGVector(dx: (player.physicsBody?.velocity.dx)!/3, dy: 0)
-            player.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: 250))
+            player.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: 600))
         }
     }
     
@@ -243,10 +255,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func loseLife() {
         // Knockback to indicate damage
         if(moveDirection == "Left") {
-            player.physicsBody?.applyImpulse(CGVector(dx: 80, dy: 200))
+            player.physicsBody?.applyImpulse(CGVector(dx: 150, dy: 300))
         }
         else {
-            player.physicsBody?.applyImpulse(CGVector(dx: -80, dy: 200))
+            player.physicsBody?.applyImpulse(CGVector(dx: -150, dy: 300))
         }
         // Decrement life count and remove a heart
         numLives -= 1
@@ -286,6 +298,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        player.run(SKAction.repeatForever(SKAction.animate(with: runTextureArray, timePerFrame: 0.08)), withKey: "running")
+        
         let touchXPosition = (touches.first?.location(in: self).x)!
         let touchYPosition = (touches.first?.location(in: self).y)!
         
@@ -329,8 +343,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("ended touch")
         if(firstTouch == touches.first?.hash) {
+            player.removeAction(forKey: "running")
+            player.texture = SKTexture(imageNamed: "StillDrake")
             touchingScreen = false
         }
         super.touchesEnded(touches, with: event)
@@ -476,7 +491,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let z = SKSpriteNode(imageNamed: "castleMid")
         let floorWidth = z.size.width
         
-        for i in 1...15 {
+        for i in 0...15 {
             let a = SKSpriteNode(imageNamed: "castleMid")
             let b = SKSpriteNode(imageNamed: "castleMid")
             let c = SKSpriteNode(imageNamed: "castleCenter")
