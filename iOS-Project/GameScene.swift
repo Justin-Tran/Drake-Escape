@@ -225,11 +225,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func pauseUnpauseGame() {
         if(gamePaused) {
+            backgroundMusic.isPaused = false
             scene?.physicsWorld.speed = 1.0
             self.scene?.view?.isPaused = false
             gamePaused = false
         }
         else {
+            backgroundMusic.isPaused = true
             scene?.physicsWorld.speed = 1.0
             self.scene?.view?.isPaused = true
             touchingScreen = false
@@ -359,7 +361,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Start a minigame every 45 secounds
             if(frameCount % 2700 == 0)
             {
-                backgroundMusic.removeFromParent()
                 pauseUnpauseGame()
                 self.gameViewControl!.performSegue(withIdentifier: "popoverTrivia", sender: self.gameViewControl!)
             }
