@@ -101,7 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreLabel)
         
         // Create Instruction Labels
-        holdToMove.text = "Hold left or right of Drake to move"
+        holdToMove.text = "Hold the left or right side of the screen to move"
         holdToMove.fontSize = 70
         holdToMove.fontColor = SKColor.white
         holdToMove.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.7)
@@ -322,13 +322,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 playerJump()
             }
             // Set direction of movement and face player character the correct direction
-            if(player.position.x < touchXPosition && !touchingScreen) {
+            if(frame.size.width/2 <= touchXPosition && !touchingScreen) {
                 if(moveDirection == "Left") {
                     player.xScale = player.xScale * -1
                 }
                 moveDirection = "Right"
             }
-            if(player.position.x > touchXPosition && !touchingScreen) {
+            if(frame.size.width/2 > touchXPosition && !touchingScreen) {
                 if(moveDirection == "Right") {
                     player.xScale = player.xScale * -1
                 }
@@ -356,8 +356,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Count Frames
             frameCount += 1
             
-            // Start a minigame every 33 secounds
-            if(frameCount % 2000 == 0)
+            // Start a minigame every 45 secounds
+            if(frameCount % 2700 == 0)
             {
                 backgroundMusic.removeFromParent()
                 pauseUnpauseGame()
