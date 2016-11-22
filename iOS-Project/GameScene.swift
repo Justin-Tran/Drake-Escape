@@ -329,12 +329,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(!gamePaused) {
             // Throw Album
             if(hasAlbum && touchYPosition < frame.size.height * 0.25 && frameCount > 900) {
-                if(touchXPosition > player.position.x) {
-                    throwAlbum("Right")
-                }
-                else {
-                    throwAlbum("Left")
-                }
+                throwAlbum(moveDirection)
             }
             // Jump only if already moving
             if(touchingScreen) {
