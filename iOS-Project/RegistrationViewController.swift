@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     let ref = FIRDatabase.database().reference(withPath: "UserInfo")
     @IBOutlet weak var emailOutlet: UITextField!
@@ -19,6 +19,8 @@ class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "regbg")!)
         passwordOutlet.isSecureTextEntry = true
+        emailOutlet.delegate = self
+        passwordOutlet.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -74,6 +76,14 @@ class RegistrationViewController: UIViewController {
         super.touchesBegan(touches, with: event)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        emailOutlet.resignFirstResponder()
+        passwordOutlet.resignFirstResponder()
+        self.registerUser(self)
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? LoginViewController
         {
@@ -89,7 +99,7 @@ class RegistrationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
 

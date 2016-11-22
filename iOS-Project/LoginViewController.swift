@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     var email: String? = nil
     var pass: String? = nil
@@ -22,7 +22,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         passwordOutlet.isSecureTextEntry = true
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "loginbg")!)
-        
+        emailOutlet.delegate = self
+        passwordOutlet.delegate = self
         if didRegister
         {
             emailOutlet.text = email!
@@ -73,6 +74,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailOutlet.resignFirstResponder()
+        passwordOutlet.resignFirstResponder()
+        loginUser(self)
+        return true
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
