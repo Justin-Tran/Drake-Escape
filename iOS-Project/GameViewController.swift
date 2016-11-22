@@ -39,6 +39,10 @@ class GameViewController: UIViewController {
             // store the score in a property of the destination view controller so it can be set in the label.
             destination.score = "\((scene?.gameScore)!)"
         }
+        if let destination = segue.destination as? TriviaViewController
+        {
+            destination.gameView = self
+        }
     }
     
     override var shouldAutorotate: Bool {

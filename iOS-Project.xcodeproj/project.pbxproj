@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D630C641DE3946300647211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D630C631DE3946300647211 /* Assets.xcassets */; };
 		3D889CA01D9DDEF7002F8C6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889C9F1D9DDEF7002F8C6E /* AppDelegate.swift */; };
 		3D889CA21D9DDEF7002F8C6E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CA11D9DDEF7002F8C6E /* GameScene.sks */; };
 		3D889CA41D9DDEF7002F8C6E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CA31D9DDEF7002F8C6E /* Actions.sks */; };
 		3D889CA61D9DDEF7002F8C6E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889CA51D9DDEF7002F8C6E /* GameScene.swift */; };
 		3D889CA81D9DDEF7002F8C6E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889CA71D9DDEF7002F8C6E /* GameViewController.swift */; };
 		3D889CAB1D9DDEF7002F8C6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CA91D9DDEF7002F8C6E /* Main.storyboard */; };
-		3D889CAD1D9DDEF7002F8C6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CAC1D9DDEF7002F8C6E /* Assets.xcassets */; };
 		3D889CB01D9DDEF7002F8C6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CAE1D9DDEF7002F8C6E /* LaunchScreen.storyboard */; };
 		3D889CBB1D9DDEF7002F8C6E /* iOS_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889CBA1D9DDEF7002F8C6E /* iOS_ProjectTests.swift */; };
 		3D889CC61D9DDEF7002F8C6E /* iOS_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D889CC51D9DDEF7002F8C6E /* iOS_ProjectUITests.swift */; };
 		3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */; };
+		3D96A3AB1DDBDCEB00408D75 /* HotlineBlingInstrumental.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D96A3AA1DDBDCEB00408D75 /* HotlineBlingInstrumental.mp3 */; };
 		439D51A45537CDF2B8916369 /* Pods_iOS_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9E243D17A62163DE2A13C9 /* Pods_iOS_ProjectTests.framework */; };
 		68222C591DD4F3C9005E7B4D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68222C581DD4F3C9005E7B4D /* LoginViewController.swift */; };
 		6851DE511DD80FA100571286 /* TriviaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851DE501DD80FA100571286 /* TriviaViewController.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D630C631DE3946300647211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D889C9C1D9DDEF7002F8C6E /* iOS-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D889C9F1D9DDEF7002F8C6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D889CA11D9DDEF7002F8C6E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -59,7 +61,6 @@
 		3D889CA51D9DDEF7002F8C6E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		3D889CA71D9DDEF7002F8C6E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		3D889CAA1D9DDEF7002F8C6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3D889CAC1D9DDEF7002F8C6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D889CAF1D9DDEF7002F8C6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D889CB11D9DDEF7002F8C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D889CB61D9DDEF7002F8C6E /* iOS-ProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-ProjectTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +70,7 @@
 		3D889CC51D9DDEF7002F8C6E /* iOS_ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ProjectUITests.swift; sourceTree = "<group>"; };
 		3D889CC71D9DDEF7002F8C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = theBoldFont.ttf; sourceTree = "<group>"; };
+		3D96A3AA1DDBDCEB00408D75 /* HotlineBlingInstrumental.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HotlineBlingInstrumental.mp3; sourceTree = "<group>"; };
 		55066C0D700140BF7E2CCEC2 /* Pods-iOS-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Project/Pods-iOS-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		68222C581DD4F3C9005E7B4D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6851DE501DD80FA100571286 /* TriviaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		3D889C9E1D9DDEF7002F8C6E /* iOS-Project */ = {
 			isa = PBXGroup;
 			children = (
+				3D96A3AA1DDBDCEB00408D75 /* HotlineBlingInstrumental.mp3 */,
 				6864D9481DD2A76B005116EC /* GoogleService-Info.plist */,
 				68A860051DD17E980018532D /* iOS-Project.entitlements */,
 				3D889CA11D9DDEF7002F8C6E /* GameScene.sks */,
@@ -164,8 +167,8 @@
 				3D889CA51D9DDEF7002F8C6E /* GameScene.swift */,
 				3D889CA91D9DDEF7002F8C6E /* Main.storyboard */,
 				3D889CAE1D9DDEF7002F8C6E /* LaunchScreen.storyboard */,
+				3D630C631DE3946300647211 /* Assets.xcassets */,
 				3D889CB11D9DDEF7002F8C6E /* Info.plist */,
-				3D889CAC1D9DDEF7002F8C6E /* Assets.xcassets */,
 				3D889CD31D9DE1C1002F8C6E /* theBoldFont.ttf */,
 				68E96A0D1DC15DB900766BF3 /* Its_Too_Late.ttf */,
 				68E96A091DC12B5600766BF3 /* GameOverViewController.swift */,
@@ -289,7 +292,7 @@
 				TargetAttributes = {
 					3D889C9B1D9DDEF7002F8C6E = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = T26MH877KL;
+						DevelopmentTeam = JPEZJUUYRY;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -340,9 +343,10 @@
 				6864D9491DD2A76B005116EC /* GoogleService-Info.plist in Resources */,
 				3D889CAB1D9DDEF7002F8C6E /* Main.storyboard in Resources */,
 				3D889CA21D9DDEF7002F8C6E /* GameScene.sks in Resources */,
+				3D96A3AB1DDBDCEB00408D75 /* HotlineBlingInstrumental.mp3 in Resources */,
 				3D889CD41D9DE1C1002F8C6E /* theBoldFont.ttf in Resources */,
-				3D889CAD1D9DDEF7002F8C6E /* Assets.xcassets in Resources */,
 				3D889CB01D9DDEF7002F8C6E /* LaunchScreen.storyboard in Resources */,
+				3D630C641DE3946300647211 /* Assets.xcassets in Resources */,
 				3D889CA41D9DDEF7002F8C6E /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,10 +679,10 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS-Project/iOS-Project.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T26MH877KL;
+				DEVELOPMENT_TEAM = JPEZJUUYRY;
 				INFOPLIST_FILE = "iOS-Project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com-ios-project";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-ios-project-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -693,10 +697,10 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS-Project/iOS-Project.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T26MH877KL;
+				DEVELOPMENT_TEAM = JPEZJUUYRY;
 				INFOPLIST_FILE = "iOS-Project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com-ios-project";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-ios-project-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -12,7 +12,6 @@ import Firebase
 class GameOverViewController: UIViewController {
 
     var score:String? = nil
-    var highScore: Int? = nil
     let highScoreString:String = "NEW HIGH SCORE. GOOD JOB"
     
     @IBOutlet weak var scoreOutlet: UILabel!
@@ -27,11 +26,13 @@ class GameOverViewController: UIViewController {
         // gets value from our database a single time. Updates high score if higher than current high score
         ref.child("\(user!.uid)").observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
-            self.highScore = value?["highScore"] as? Int
-            if Int(self.score!)! > self.highScore!
+            let highScore = value?["highScore"]! as! Int
+            if Int(self.score!)! > abs(highScore)
             {
                 self.highScoreOutlet.text = self.highScoreString
-                ref.child("\(user!.uid)").updateChildValues(["highScore" : self.score!])
+                
+                // converts score to negative for database storage.
+                ref.child("\(user!.uid)").updateChildValues(["highScore" : Int(self.score!)! * -1 ])
             }
         })
         

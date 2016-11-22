@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class TriviaViewController: UIViewController {
+class TriviaViewController: UIViewController{
 
     @IBOutlet weak var questionOutlet: UILabel!
     @IBOutlet weak var answerA: UIButton!
@@ -18,6 +18,7 @@ class TriviaViewController: UIViewController {
     @IBOutlet weak var answerD: UIButton!
     
     var correct: Int = 0
+    var gameView: GameViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,21 +70,45 @@ class TriviaViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func answerAPicked(_ sender: Any) {
-        performSegue(withIdentifier: "endMinigame", sender: self)
+        if self.correct == 1
+        {
+            self.gameView!.scene?.gameScore += 100
+            self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
+        }
+        self.gameView!.scene?.pauseUnpauseGame()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func answerBPicked(_ sender: Any) {
-        performSegue(withIdentifier: "endMinigame", sender: self)
+        if self.correct == 2
+        {
+            self.gameView!.scene?.gameScore += 100
+            self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
+        }
+        self.gameView!.scene?.pauseUnpauseGame()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func answerCPicked(_ sender: Any) {
-        performSegue(withIdentifier: "endMinigame", sender: self)
+        if self.correct == 3
+        {
+            self.gameView!.scene?.gameScore += 100
+            self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
+        }
+        self.gameView!.scene?.pauseUnpauseGame()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func answerDPicked(_ sender: Any) {
-        performSegue(withIdentifier: "endMinigame", sender: self)
+        if self.correct == 4
+        {
+            self.gameView!.scene?.gameScore += 100
+            self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
+        }
+        self.gameView!.scene?.pauseUnpauseGame()
+        dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
