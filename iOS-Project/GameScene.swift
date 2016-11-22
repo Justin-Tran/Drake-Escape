@@ -371,10 +371,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             frameCount += 1
             
             // Start a minigame every 45 secounds
-            if(frameCount % 2700 == 0)
+            if(frameCount % 1000 == 0)
             {
                 pauseUnpauseGame()
-                self.gameViewControl!.performSegue(withIdentifier: "popoverTrivia", sender: self.gameViewControl!)
+                self.gameViewControl!.performSegue(withIdentifier:  "popoverTrivia", sender: self.gameViewControl!)
             }
             
             if(frameCount < 300) {
