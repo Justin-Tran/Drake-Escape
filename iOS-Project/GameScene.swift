@@ -727,13 +727,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(!gamePaused){
             let enemy = SKSpriteNode(imageNamed: "paparazziEnemy")
             var eStartX = CGFloat(0)
-            if(player.position.x > frame.size.width/2) {
-                eStartX = random(min: 10, max: CGFloat(frame.size.width-10)/2)
+            // Left Third
+            if(player.position.x < frame.size.width/3) {
+                eStartX = random(min: CGFloat(frame.size.width*2/3)-10, max: CGFloat(frame.size.width-10))
             }
+            // Middle Third
+            else if (player.position.x < frame.size.width*2/3) {
+                eStartX = random(min: CGFloat(frame.size.width*2/3)-10, max: CGFloat(frame.size.width-10))
+            }
+            // Right Third
             else {
-                eStartX = random(min: CGFloat(frame.size.width-10)/2, max: CGFloat(frame.size.width-10))
+                eStartX = random(min: CGFloat(10), max: CGFloat(frame.size.width/3)-10)
             }
-            let eStartY = CGFloat(1500)
+            let eStartY = CGFloat(1400)
             enemy.position = CGPoint(x: eStartX, y: eStartY)
             enemy.zPosition = 2
             enemy.setScale(0.4)
