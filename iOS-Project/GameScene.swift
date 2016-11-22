@@ -37,6 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let avoidEnemies = SKLabelNode(fontNamed: "The Bold Font")
     let tapToFire = SKLabelNode(fontNamed: "The Bold Font")
     let touchtoPickup = SKLabelNode(fontNamed: "The Bold Font")
+    let jumpOnEnemies = SKLabelNode(fontNamed: "The Bold Font")
     var gameScore: Int = 0
     var gameArea: CGRect
     
@@ -140,6 +141,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         touchtoPickup.zPosition = 100
         touchtoPickup.isHidden = true
         self.addChild(touchtoPickup)
+        
+        jumpOnEnemies.text = "You can also jump on enemies"
+        jumpOnEnemies.fontSize = 70
+        jumpOnEnemies.fontColor = SKColor.white
+        jumpOnEnemies.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.7)
+        jumpOnEnemies.zPosition = 100
+        jumpOnEnemies.isHidden = true
+        self.addChild(jumpOnEnemies)
 
         // Create Lives
         heart_1.position = CGPoint(x: self.size.width*0.78, y: self.size.height*0.825)
@@ -202,7 +211,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         // player and enemy make contact
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Enemy {
-            loseLife()
+            let enemyHead = (body2.node?.position.y)! + (body2.node?.frame.size.height)!/2
+            let playerFeet = (body1.node?.position.y)! - (body1.node?.frame.size.height)!/2 + 5
+            print(enemyHead)
+            print(playerFeet)
+            
+            if(playerFeet < enemyHead) {
+                loseLife()
+            }
             body2.collisionBitMask = PhysicsCategories.None
             body2.categoryBitMask = PhysicsCategories.None
         }
@@ -384,8 +400,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 tapToFire.isHidden = true
                 touchtoPickup.isHidden = false
             }
-            if(frameCount > 1500) {
+            if(frameCount > 1500 && frameCount < 1800) {
                 touchtoPickup.isHidden = true
+                jumpOnEnemies.isHidden = false
+            }
+            if(frameCount > 1800) {
+                jumpOnEnemies.isHidden = true
             }
             
             // Move Player
