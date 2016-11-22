@@ -18,7 +18,7 @@ class StartScreenViewController: UIViewController {
     }
     
     @IBAction func settings(_ sender: Any) {
-        let alert: UIAlertController = UIAlertController(title: "Settings", message: "More settings to come in Final Release", preferredStyle: UIAlertControllerStyle.alert)
+        let alert: UIAlertController = UIAlertController(title: "Settings", message: "More settings to come in Final Release", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (action:UIAlertAction) in
         }
         alert.addAction(cancelAction)

@@ -11,6 +11,9 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
+    var email: String? = nil
+    var pass: String? = nil
+    var didRegister: Bool = false
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
@@ -19,6 +22,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         passwordOutlet.isSecureTextEntry = true
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "loginbg")!)
+        
+        if didRegister
+        {
+            emailOutlet.text = email!
+            passwordOutlet.text = pass!
+        }
         // Do any additional setup after loading the view.
     }
 

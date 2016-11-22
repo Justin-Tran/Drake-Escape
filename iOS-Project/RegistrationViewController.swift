@@ -74,6 +74,16 @@ class RegistrationViewController: UIViewController {
         super.touchesBegan(touches, with: event)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? LoginViewController
+        {
+            // store the score in a property of the destination view controller so it can be set in the label.
+            destination.email = emailOutlet.text
+            destination.pass = passwordOutlet.text
+            destination.didRegister = true
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

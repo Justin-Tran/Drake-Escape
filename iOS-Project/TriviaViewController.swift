@@ -19,6 +19,8 @@ class TriviaViewController: UIViewController{
     
     var correct: Int = 0
     var gameView: GameViewController? = nil
+    // Number of points you get for answering a question correct.
+    var pointsCorrect = 500
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +76,7 @@ class TriviaViewController: UIViewController{
     @IBAction func answerAPicked(_ sender: Any) {
         if self.correct == 1
         {
-            self.gameView!.scene?.gameScore += 100
+            self.gameView!.scene?.gameScore += pointsCorrect
             self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
         }
         self.gameView!.scene?.pauseUnpauseGame()
@@ -84,7 +86,7 @@ class TriviaViewController: UIViewController{
     @IBAction func answerBPicked(_ sender: Any) {
         if self.correct == 2
         {
-            self.gameView!.scene?.gameScore += 100
+            self.gameView!.scene?.gameScore += pointsCorrect
             self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
         }
         self.gameView!.scene?.pauseUnpauseGame()
@@ -94,7 +96,7 @@ class TriviaViewController: UIViewController{
     @IBAction func answerCPicked(_ sender: Any) {
         if self.correct == 3
         {
-            self.gameView!.scene?.gameScore += 100
+            self.gameView!.scene?.gameScore += pointsCorrect
             self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
         }
         self.gameView!.scene?.pauseUnpauseGame()
@@ -104,7 +106,7 @@ class TriviaViewController: UIViewController{
     @IBAction func answerDPicked(_ sender: Any) {
         if self.correct == 4
         {
-            self.gameView!.scene?.gameScore += 100
+            self.gameView!.scene?.gameScore += pointsCorrect
             self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
         }
         self.gameView!.scene?.pauseUnpauseGame()
