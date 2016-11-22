@@ -23,7 +23,7 @@ class HiScoreTableViewController: UITableViewController {
             
             for item in snapshot.children
             {
-                if count >= 8
+                if count >= 10
                 {
                     break
                 }
@@ -79,9 +79,10 @@ class HiScoreTableViewController: UITableViewController {
         
         if indexPath.row > 0 && highScoreList.count > 1
         {
-            let userInfo:UserInfo = highScoreList[highScoreList.count - indexPath.row]
-            cell?.textLabel?.text = userInfo.email
-            cell?.detailTextLabel?.text = "\(userInfo.highScore!)"
+            let userInfo:UserInfo = highScoreList[indexPath.row - 1]
+            var emailSplit = userInfo.email?.components(separatedBy: "@")
+            cell?.textLabel?.text = emailSplit?[0]
+            cell?.detailTextLabel?.text = "\(abs(userInfo.highScore!))"
         }
         
         return cell!

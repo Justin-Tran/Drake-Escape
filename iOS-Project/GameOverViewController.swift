@@ -27,10 +27,12 @@ class GameOverViewController: UIViewController {
         ref.child("\(user!.uid)").observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
             let highScore = value?["highScore"]! as! Int
-            if Int(self.score!)! > highScore
+            if Int(self.score!)! > abs(highScore)
             {
                 self.highScoreOutlet.text = self.highScoreString
-                ref.child("\(user!.uid)").updateChildValues(["highScore" : highScore])
+                
+                // converts score to negative for database storage.
+                ref.child("\(user!.uid)").updateChildValues(["highScore" : Int(self.score!)! * -1 ])
             }
         })
         

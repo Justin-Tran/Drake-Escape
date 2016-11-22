@@ -75,7 +75,7 @@ class TriviaViewController: UIViewController{
         if self.correct == 1
         {
             self.gameView!.scene?.gameScore += 100
-            self.gameView!.scene?.scoreLabel.text = "Score: \(self.gameView!.scene?.gameScore)"
+            self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
         }
         self.gameView!.scene?.pauseUnpauseGame()
         dismiss(animated: true, completion: nil)
@@ -85,7 +85,7 @@ class TriviaViewController: UIViewController{
         if self.correct == 2
         {
             self.gameView!.scene?.gameScore += 100
-            self.gameView!.scene?.scoreLabel.text = "Score: \(self.gameView!.scene?.gameScore)"
+            self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
         }
         self.gameView!.scene?.pauseUnpauseGame()
         dismiss(animated: true, completion: nil)
@@ -95,7 +95,7 @@ class TriviaViewController: UIViewController{
         if self.correct == 3
         {
             self.gameView!.scene?.gameScore += 100
-            self.gameView!.scene?.scoreLabel.text = "Score: \(self.gameView!.scene?.gameScore)"
+            self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
         }
         self.gameView!.scene?.pauseUnpauseGame()
         dismiss(animated: true, completion: nil)
@@ -105,7 +105,7 @@ class TriviaViewController: UIViewController{
         if self.correct == 4
         {
             self.gameView!.scene?.gameScore += 100
-            self.gameView!.scene?.scoreLabel.text = "Score: \(self.gameView!.scene?.gameScore)"
+            self.gameView!.scene?.scoreLabel.text = "Score: \((self.gameView!.scene?.gameScore)!)"
         }
         self.gameView!.scene?.pauseUnpauseGame()
         dismiss(animated: true, completion: nil)
