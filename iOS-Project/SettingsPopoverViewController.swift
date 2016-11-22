@@ -11,22 +11,23 @@ import UIKit
 class SettingsPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     var settingsView: SettingsTableViewController? = nil
+    var startScreenDel: StartScreenViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    func logoff() {
+        startScreenDel?.performSegue(withIdentifier: "logout", sender: startScreenDel)
+    }
     func presentPopover(sourceController:UIViewController, sourceView:UIView, sourceRect:CGRect) {
         
         // Create the view controller we want to display as the popup.
         self.settingsView = SettingsTableViewController(title: "Candidates", preferredContentSize: CGSize(width: 200, height: 140))
+        
+        self.settingsView?.popoverDel = self
         
         // Cause the views to be created in this view controller. Gets them added to the view hierarchy.
         let _ = self.settingsView?.view
@@ -48,6 +49,11 @@ class SettingsPopoverViewController: UIViewController, UIPopoverPresentationCont
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     /*

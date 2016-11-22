@@ -12,6 +12,7 @@ import Firebase
 class SettingsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tableView:UITableView = UITableView()
+    var popoverDel: SettingsPopoverViewController? = nil
     
     convenience init(title:String, preferredContentSize: CGSize)
     {
@@ -57,6 +58,8 @@ class SettingsTableViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath as IndexPath)
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
         if indexPath.row == 0
         {
             cell.textLabel?.textAlignment = .center
@@ -96,8 +99,8 @@ class SettingsTableViewController: UIViewController, UITableViewDataSource, UITa
         }
         if indexPath.row == 2
         {
-            //try! FIRAuth.auth()!.signOut()
-            //self.performSegue(withIdentifier: "logout", sender: self)
+            try! FIRAuth.auth()!.signOut()
+            self.popoverDel?.logoff()
         }
     }
     /*

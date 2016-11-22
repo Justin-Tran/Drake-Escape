@@ -33,6 +33,7 @@ class StartScreenViewController: UIViewController {
         self.present(alert, animated: true, completion:nil)*/
         
         let settingsPopover: SettingsPopoverViewController = SettingsPopoverViewController()
+        settingsPopover.startScreenDel = self
         settingsPopover.presentPopover(sourceController: self, sourceView: self.settingsOutlet, sourceRect: self.settingsOutlet.bounds)
     }
 
