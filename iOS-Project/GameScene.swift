@@ -212,12 +212,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // player and enemy make contact
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Enemy {
             let enemyHead = (body2.node?.position.y)! + (body2.node?.frame.size.height)!/2
-            let playerFeet = (body1.node?.position.y)! - (body1.node?.frame.size.height)!/2 + 5
-            print(enemyHead)
-            print(playerFeet)
+            let playerFeet = (body1.node?.position.y)! - (body1.node?.frame.size.height)!/2 + 10
             
             if(playerFeet < enemyHead) {
                 loseLife()
+            }
+            else {
+                addScore()
             }
             body2.collisionBitMask = PhysicsCategories.None
             body2.categoryBitMask = PhysicsCategories.None
