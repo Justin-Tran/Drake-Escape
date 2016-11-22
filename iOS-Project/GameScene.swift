@@ -21,10 +21,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var hasAlbum = true
     var activeAlbum = false
     var gamePaused = false
+    var pickUpOnScreen = false
     let pauseButton = SKSpriteNode(imageNamed: "pause")
     let heart_1 = SKSpriteNode(imageNamed: "heart")
     let heart_2 = SKSpriteNode(imageNamed: "heart")
     let heart_3 = SKSpriteNode(imageNamed: "heart")
+    let pickUp = SKSpriteNode(imageNamed: "6god")
     var frameCount = 0
     var numLives = 3
     var numJumps = 0
@@ -38,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let tapToFire = SKLabelNode(fontNamed: "The Bold Font")
     let touchtoPickup = SKLabelNode(fontNamed: "The Bold Font")
     let jumpOnEnemies = SKLabelNode(fontNamed: "The Bold Font")
+    let touch6God = SKLabelNode(fontNamed: "The Bold Font")
     var gameScore: Int = 0
     var gameArea: CGRect
     
@@ -47,6 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let Player : UInt32 = 0x1 << 2
         static let Enemy : UInt32 = 0x1 << 3
         static let Album : UInt32 = 0x1 << 4
+        static let PickUp : UInt32 = 0x1 << 5
     }
     
     func random() -> CGFloat {
@@ -149,6 +153,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         jumpOnEnemies.zPosition = 100
         jumpOnEnemies.isHidden = true
         self.addChild(jumpOnEnemies)
+        
+        touch6God.text = "Touch the 6God symbol for extra points"
+        touch6God.fontSize = 70
+        touch6God.fontColor = SKColor.white
+        touch6God.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.7)
+        touch6God.zPosition = 100
+        touch6God.isHidden = true
+        self.addChild(touch6God)
 
         // Create Lives
         heart_1.position = CGPoint(x: self.size.width*0.78, y: self.size.height*0.825)
@@ -237,6 +249,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Album {
             hasAlbum = true
             album.physicsBody!.collisionBitMask = PhysicsCategories.Ground | PhysicsCategories.Enemy
+        }
+        // player and pickup make contact
+        if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.PickUp {
+            pauseUnpauseGame()
+            pickUpOnScreen = false
+            body2.node?.removeFromParent()
+            self.gameViewControl!.performSegue(withIdentifier: "popoverTrivia", sender: self.gameViewControl!)
         }
     }
     
@@ -373,8 +392,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Start a minigame every 45 secounds
             if(frameCount % 2700 == 0)
             {
-                pauseUnpauseGame()
-                self.gameViewControl!.performSegue(withIdentifier: "popoverTrivia", sender: self.gameViewControl!)
+                spawnPickUp()
+            }
+            if(frameCount > 2700 && frameCount < 3000) {
+                touch6God.isHidden = false
+            }
+            else {
+                touch6God.isHidden = true
             }
             
             if(frameCount < 300) {
@@ -771,6 +795,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
             enemyTwitterArr.append(enemy)
             addChild(enemy)
+        }
+    }
+    
+    func spawnPickUp() {
+        if(!pickUpOnScreen) {
+            pickUpOnScreen = true
+            let eStartX = random(min: CGFloat(100), max: CGFloat(frame.size.width-100))
+            let eStartY = random(min: 500, max: 900)
+            pickUp.position = CGPoint(x: eStartX, y: eStartY)
+            pickUp.zPosition = 2
+            pickUp.setScale(1)
+            pickUp.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: pickUp.size.width*0.5, height: pickUp.size.height*0.5))
+            pickUp.physicsBody?.allowsRotation = false
+            pickUp.physicsBody?.affectedByGravity = false
+            pickUp.physicsBody!.categoryBitMask = PhysicsCategories.PickUp
+            pickUp.physicsBody!.collisionBitMask = PhysicsCategories.None
+            pickUp.physicsBody!.contactTestBitMask = PhysicsCategories.Player
+            
+            addChild(pickUp)
         }
     }
 

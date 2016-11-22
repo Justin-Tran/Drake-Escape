@@ -91,14 +91,6 @@
                                     <segue destination="ykE-jz-8dw" kind="show" id="y6P-IC-nyq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkq-GR-xIw">
-                                <rect key="frame" x="299" y="248" width="69" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="quick skip"/>
-                                <connections>
-                                    <segue destination="Asi-GG-ng6" kind="show" identifier="DELETEPLEASE" id="z7E-5d-MEI"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -278,7 +270,7 @@
                                 <rect key="frame" x="0.0" y="28" width="667" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cp1-l8-cOd" id="MFD-Aj-Kr9">
-                                    <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="667" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E69-YG-5Ym">
@@ -307,18 +299,18 @@
                                 <rect key="frame" x="0.0" y="72" width="667" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peA-Ua-i7d" id="2R8-io-QBC">
-                                    <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="667" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tOe-yA-ZvB">
-                                            <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="15" y="11" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7gd-el-EkI">
-                                            <rect key="frame" x="608" y="12" width="44" height="20.5"/>
+                                            <rect key="frame" x="608" y="11" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -509,7 +501,7 @@
         <image name="trophy" width="500" height="537"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="z7E-5d-MEI"/>
         <segue reference="Yr8-Ub-X8p"/>
+        <segue reference="L83-Oj-Jfc"/>
     </inferredMetricsTieBreakers>
 </document>
