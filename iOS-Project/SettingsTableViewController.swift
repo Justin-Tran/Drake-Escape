@@ -91,10 +91,12 @@ class SettingsTableViewController: UIViewController, UITableViewDataSource, UITa
             if cell?.textLabel?.text == "MUSIC                ON"
             {
                 cell?.textLabel?.text = "MUSIC              OFF"
+                popoverDel?.startScreenDel?.music = false
             }
             else
             {
                 cell?.textLabel?.text = "MUSIC                ON"
+                popoverDel?.startScreenDel?.music = true
             }
         }
         if indexPath.row == 2

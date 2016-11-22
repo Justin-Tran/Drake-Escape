@@ -12,6 +12,7 @@ import Firebase
 class StartScreenViewController: UIViewController {
     
     @IBOutlet weak var settingsOutlet: UIButton!
+    var music: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +21,6 @@ class StartScreenViewController: UIViewController {
     }
     
     @IBAction func settings(_ sender: Any) {
-        /*let alert: UIAlertController = UIAlertController(title: "Settings", message: "More settings to come in Final Release", preferredStyle: UIAlertControllerStyle.actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (action:UIAlertAction) in
-        }
-        alert.addAction(cancelAction)
-        let OKAction = UIAlertAction(title: "Log Off", style: UIAlertActionStyle.default) { (action:UIAlertAction) in
-            try! FIRAuth.auth()!.signOut()
-            self.performSegue(withIdentifier: "logout", sender: self)
-        }
-        alert.addAction(OKAction)
-        
-        self.present(alert, animated: true, completion:nil)*/
         
         let settingsPopover: SettingsPopoverViewController = SettingsPopoverViewController()
         settingsPopover.startScreenDel = self
@@ -42,15 +32,17 @@ class StartScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let destination = segue.destination as? GameViewController
+        {
+            // store the score in a property of the destination view controller so it can be set in the label.
+            destination.music = self.music
+        }
     }
-    */
 
 }

@@ -13,6 +13,7 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     var scene: GameScene? = nil
+    var music: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class GameViewController: UIViewController {
         /* Set the scale mode to scale to fit the window */
         self.scene?.scaleMode = .aspectFill
         
+        self.scene?.music = self.music
         self.scene?.gameViewControl = self
         skView.presentScene(self.scene)
     }

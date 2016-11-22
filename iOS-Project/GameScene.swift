@@ -43,6 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let touch6God = SKLabelNode(fontNamed: "The Bold Font")
     var gameScore: Int = 0
     var gameArea: CGRect
+    var music: Bool = true
     
     struct PhysicsCategories {
         static let None : UInt32 = 0x1 << 0
@@ -81,9 +82,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Background Music
-        if let musicURL = Bundle.main.url(forResource: "HotlineBlingInstrumental", withExtension: "mp3") {
-            backgroundMusic = SKAudioNode(url: musicURL)
-            addChild(backgroundMusic)
+        if music
+        {
+            if let musicURL = Bundle.main.url(forResource: "HotlineBlingInstrumental", withExtension: "mp3") {
+                backgroundMusic = SKAudioNode(url: musicURL)
+                addChild(backgroundMusic)
+            }
         }
         // Set Contact Delegate
         self.physicsWorld.contactDelegate = self
@@ -261,13 +265,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func pauseUnpauseGame() {
         if(gamePaused) {
-            backgroundMusic.isPaused = false
+            if music
+            {
+                backgroundMusic.isPaused = false
+            }
             scene?.physicsWorld.speed = 1.0
             self.scene?.view?.isPaused = false
             gamePaused = false
         }
         else {
-            backgroundMusic.isPaused = true
+            if music
+            {
+                backgroundMusic.isPaused = true
+            }
             scene?.physicsWorld.speed = 1.0
             self.scene?.view?.isPaused = true
             touchingScreen = false
@@ -328,7 +338,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func gameOver() {
         // segues to game over screen and deallocates sprites
-        backgroundMusic.removeFromParent()
+        if music
+        {
+            backgroundMusic.removeFromParent()
+        }
         gameViewControl?.performSegue(withIdentifier: "gameOverID", sender: gameViewControl!)
         self.removeAllActions()
         self.removeAllChildren()
