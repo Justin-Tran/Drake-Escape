@@ -11,6 +11,8 @@ import Firebase
 
 class StartScreenViewController: UIViewController {
     
+    @IBOutlet weak var settingsOutlet: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,7 +20,7 @@ class StartScreenViewController: UIViewController {
     }
     
     @IBAction func settings(_ sender: Any) {
-        let alert: UIAlertController = UIAlertController(title: "Settings", message: "More settings to come in Final Release", preferredStyle: UIAlertControllerStyle.actionSheet)
+        /*let alert: UIAlertController = UIAlertController(title: "Settings", message: "More settings to come in Final Release", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (action:UIAlertAction) in
         }
         alert.addAction(cancelAction)
@@ -28,7 +30,10 @@ class StartScreenViewController: UIViewController {
         }
         alert.addAction(OKAction)
         
-        self.present(alert, animated: true, completion:nil)
+        self.present(alert, animated: true, completion:nil)*/
+        
+        let settingsPopover: SettingsPopoverViewController = SettingsPopoverViewController()
+        settingsPopover.presentPopover(sourceController: self, sourceView: self.settingsOutlet, sourceRect: self.settingsOutlet.bounds)
     }
 
     override func didReceiveMemoryWarning() {
