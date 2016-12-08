@@ -218,7 +218,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4h-Zc-tcj">
-                                <rect key="frame" x="229" y="223" width="208" height="80"/>
+                                <rect key="frame" x="229" y="249" width="208" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="30"/>
                                 <state key="normal" title="START GAME" backgroundImage="startButton"/>
@@ -234,16 +234,31 @@
                                     <action selector="settings:" destination="Asi-GG-ng6" eventType="touchUpInside" id="dRe-qU-OC7"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CURRENT CHARACTER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ix8-cB-jpy">
+                                <rect key="frame" x="202" y="132" width="177" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VB7-hD-uZj">
-                                <rect key="frame" x="387" y="131" width="44" height="50"/>
+                                <rect key="frame" x="387" y="117" width="44" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="StillDrake"/>
                                 <connections>
                                     <action selector="changeSkin:" destination="Asi-GG-ng6" eventType="touchUpInside" id="cJZ-kc-Frv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CURRENT CHARACTER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ix8-cB-jpy">
-                                <rect key="frame" x="198" y="146" width="181" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="me2-Jg-SK6">
+                                <rect key="frame" x="387" y="190" width="44" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="city_bg"/>
+                                <connections>
+                                    <action selector="changeMap:" destination="Asi-GG-ng6" eventType="touchUpInside" id="Q1W-rY-FdR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CURRENT MAP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8C-td-0hn">
+                                <rect key="frame" x="259" y="194" width="120" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="27"/>
                                 <nil key="textColor"/>
@@ -255,6 +270,7 @@
                     <navigationItem key="navigationItem" id="Yit-cd-dJp"/>
                     <connections>
                         <outlet property="drakeButton" destination="VB7-hD-uZj" id="o8z-f6-nWM"/>
+                        <outlet property="mapButton" destination="me2-Jg-SK6" id="baZ-jq-EjB"/>
                         <outlet property="settingsOutlet" destination="Sfi-rv-T99" id="Vzw-e0-Gh3"/>
                         <segue destination="4VN-AI-dhG" kind="show" identifier="logout" id="Yr8-Ub-X8p"/>
                     </connections>
@@ -517,6 +533,7 @@
     </scenes>
     <resources>
         <image name="StillDrake" width="250" height="320"/>
+        <image name="city_bg" width="1920" height="1080"/>
         <image name="gearIcon" width="512" height="512"/>
         <image name="owl" width="2500" height="2500"/>
         <image name="phone" width="512" height="512"/>
@@ -525,6 +542,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Yr8-Ub-X8p"/>
-        <segue reference="Hko-Hg-ode"/>
+        <segue reference="0YT-O0-F1f"/>
     </inferredMetricsTieBreakers>
 </document>

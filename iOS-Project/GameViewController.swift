@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     var scene: GameScene? = nil
     var music: Bool = true
     var drakeSkin: String = "Red"
+    var map: String = "city_bg"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class GameViewController: UIViewController {
         
         self.scene?.music = self.music
         self.scene?.drakeSkin = self.drakeSkin
+        self.scene?.map = self.map
         self.scene?.gameViewControl = self
         skView.presentScene(self.scene)
     }

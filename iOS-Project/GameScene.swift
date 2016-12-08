@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var enemyPaparazziArr:[SKSpriteNode] = [SKSpriteNode]()
     var enemyTwitterArr:[SKSpriteNode] = [SKSpriteNode]()
     var drakeSkin = "Black"
+    var map = "city_bg"
     var player = SKSpriteNode(imageNamed: "StillDrake")
     var runTextureArray = [SKTexture]()
     let album = SKSpriteNode(imageNamed: "fireAlbum")
@@ -106,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         // Create Background
-        let background = SKSpriteNode(imageNamed: "city_bg")
+        let background = SKSpriteNode(imageNamed: self.map)
         background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
         background.size.width = frame.size.width
         background.size.height = frame.size.height

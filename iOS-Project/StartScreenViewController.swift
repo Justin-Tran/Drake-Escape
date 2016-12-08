@@ -13,9 +13,11 @@ class StartScreenViewController: UIViewController {
     
     @IBOutlet weak var settingsOutlet: UIButton!
     @IBOutlet weak var drakeButton: UIButton!
+    @IBOutlet weak var mapButton: UIButton!
     
     var music: Bool = true
     var currentSkin: Int = 0
+    var currentMap: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,22 @@ class StartScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func changeMap(_ sender: Any) {
+        
+        if self.currentMap == 0
+        {
+            let skin: UIImage = UIImage(named: "bg_forest")!
+            self.mapButton.setImage(skin, for: .normal)
+            self.currentMap = 1
+        }
+        else if self.currentMap == 1
+        {
+            let skin: UIImage = UIImage(named: "city_bg")!
+            self.mapButton.setImage(skin, for: .normal)
+            self.currentMap = 0
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -67,6 +85,14 @@ class StartScreenViewController: UIViewController {
             else if self.currentSkin == 1
             {
                 destination.drakeSkin = "Black"
+            }
+            if self.currentSkin == 0
+            {
+                destination.map = "city_bg"
+            }
+            else if self.currentSkin == 1
+            {
+                destination.map = "bg_forest"
             }
         }
     }
