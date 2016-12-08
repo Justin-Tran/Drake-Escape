@@ -15,7 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backgroundMusic: SKAudioNode!
     var enemyPaparazziArr:[SKSpriteNode] = [SKSpriteNode]()
     var enemyTwitterArr:[SKSpriteNode] = [SKSpriteNode]()
-    let player = SKSpriteNode(imageNamed: "StillDrake")
+    var drakeSkin = "Black"
+    var player = SKSpriteNode(imageNamed: "StillDrake")
     var runTextureArray = [SKTexture]()
     let album = SKSpriteNode(imageNamed: "fireAlbum")
     var hasAlbum = true
@@ -75,9 +76,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        if drakeSkin == "Red" {
+            player = SKSpriteNode(imageNamed: "StillDrake")
+        }
+        if drakeSkin == "Black" {
+            player = SKSpriteNode(imageNamed: "BStillDrake")
+        }
         // Setup Texture for Drake
         for i in 1...12 {
-            let textureName = "Run\(i)"
+            var textureName = ""
+            if drakeSkin == "Red" {
+                textureName = "Run\(i)"
+            }
+            if drakeSkin == "Black" {
+                textureName = "BRun\(i)"
+            }
             runTextureArray.append(SKTexture(imageNamed: textureName))
         }
         
@@ -235,6 +248,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             else {
                 addScore()
+                body1.applyImpulse(CGVector(dx: 0.0, dy: 350))
             }
             body2.collisionBitMask = PhysicsCategories.None
             body2.categoryBitMask = PhysicsCategories.None
@@ -287,7 +301,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerJump() {
         player.action(forKey: "running")?.speed = 0
-        player.texture = SKTexture(imageNamed: "Run10")
+        if drakeSkin == "Red" {
+            player.texture = SKTexture(imageNamed: "Run10")
+        }
+        if drakeSkin == "Black" {
+            player.texture = SKTexture(imageNamed: "BRun10")
+        }
         numJumps += 1
         if(numJumps <= 2) {
             player.physicsBody?.velocity = CGVector(dx: (player.physicsBody?.velocity.dx)!/3, dy: 0)
@@ -391,7 +410,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if(firstTouch == touches.first?.hash) {
             player.removeAction(forKey: "running")
-            player.texture = SKTexture(imageNamed: "StillDrake")
+            if drakeSkin == "Red" {
+                player.texture = SKTexture(imageNamed: "StillDrake")
+            }
+            if drakeSkin == "Black" {
+                player.texture = SKTexture(imageNamed: "BStillDrake")
+            }
             touchingScreen = false
         }
         super.touchesEnded(touches, with: event)
@@ -765,7 +789,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             // Middle Third
             else if (player.position.x < frame.size.width*2/3) {
-                eStartX = random(min: CGFloat(frame.size.width*2/3)-10, max: CGFloat(frame.size.width-10))
+                eStartX = random(min: CGFloat(10), max: CGFloat(frame.size.width/3)-10)
             }
             // Right Third
             else {
