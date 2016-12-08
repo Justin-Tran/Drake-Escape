@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
 
     var scene: GameScene? = nil
     var music: Bool = true
+    var drakeSkin: String = "Red"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class GameViewController: UIViewController {
         self.scene?.scaleMode = .aspectFill
         
         self.scene?.music = self.music
+        self.scene?.drakeSkin = self.drakeSkin
         self.scene?.gameViewControl = self
         skView.presentScene(self.scene)
     }

@@ -12,7 +12,10 @@ import Firebase
 class StartScreenViewController: UIViewController {
     
     @IBOutlet weak var settingsOutlet: UIButton!
+    @IBOutlet weak var drakeButton: UIButton!
+    
     var music: Bool = true
+    var currentSkin: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,21 @@ class StartScreenViewController: UIViewController {
         settingsPopover.presentPopover(sourceController: self, sourceView: self.settingsOutlet, sourceRect: self.settingsOutlet.bounds)
     }
 
+    @IBAction func changeSkin(_ sender: Any) {
+        
+        if self.currentSkin == 0
+        {
+            let skin: UIImage = UIImage(named: "BStillDrake")!
+            self.drakeButton.setImage(skin, for: .normal)
+            self.currentSkin = 1
+        }
+        else if self.currentSkin == 1
+        {
+            let skin: UIImage = UIImage(named: "StillDrake")!
+            self.drakeButton.setImage(skin, for: .normal)
+            self.currentSkin = 0
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,6 +60,14 @@ class StartScreenViewController: UIViewController {
         {
             // store the score in a property of the destination view controller so it can be set in the label.
             destination.music = self.music
+            if self.currentSkin == 0
+            {
+                destination.drakeSkin = "Red"
+            }
+            else if self.currentSkin == 1
+            {
+                destination.drakeSkin = "Black"
+            }
         }
     }
 

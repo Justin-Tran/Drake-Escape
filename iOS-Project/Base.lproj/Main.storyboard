@@ -218,7 +218,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4h-Zc-tcj">
-                                <rect key="frame" x="229" y="249" width="208" height="80"/>
+                                <rect key="frame" x="229" y="223" width="208" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="30"/>
                                 <state key="normal" title="START GAME" backgroundImage="startButton"/>
@@ -226,17 +226,6 @@
                                     <segue destination="BV1-FR-VrT" kind="show" id="jZ3-s7-Ucc"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="8BitDrakeHead" translatesAutoresizingMaskIntoConstraints="NO" id="E6t-Kq-2m4">
-                                <rect key="frame" x="308" y="142" width="50" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CURRENT CHARACTER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ix8-cB-jpy">
-                                <rect key="frame" x="243" y="204" width="181" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="27"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfi-rv-T99">
                                 <rect key="frame" x="574" y="296" width="73" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -245,18 +234,34 @@
                                     <action selector="settings:" destination="Asi-GG-ng6" eventType="touchUpInside" id="dRe-qU-OC7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VB7-hD-uZj">
+                                <rect key="frame" x="387" y="131" width="44" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="StillDrake"/>
+                                <connections>
+                                    <action selector="changeSkin:" destination="Asi-GG-ng6" eventType="touchUpInside" id="cJZ-kc-Frv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CURRENT CHARACTER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ix8-cB-jpy">
+                                <rect key="frame" x="198" y="146" width="181" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Yit-cd-dJp"/>
                     <connections>
+                        <outlet property="drakeButton" destination="VB7-hD-uZj" id="o8z-f6-nWM"/>
                         <outlet property="settingsOutlet" destination="Sfi-rv-T99" id="Vzw-e0-Gh3"/>
                         <segue destination="4VN-AI-dhG" kind="show" identifier="logout" id="Yr8-Ub-X8p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qy-zk-94U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-162" y="-954"/>
+            <point key="canvasLocation" x="-162.3688155922039" y="-954.39999999999998"/>
         </scene>
         <!--Hi Score Table View Controller-->
         <scene sceneID="XWp-X6-b22">
@@ -465,7 +470,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="25"/>
                                 <state key="normal" title="TRY AGAIN">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.63949871063232422" green="0.56957632303237915" blue="0.38197928667068481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="Asi-GG-ng6" kind="show" identifier="tryAgainID" id="Hko-Hg-ode"/>
@@ -489,7 +494,7 @@
                                 <rect key="frame" x="212" y="242" width="242" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="It's-Too-Late" family="It's Too Late" pointSize="28"/>
-                                <color key="textColor" red="1" green="0.1223595329" blue="0.22236106489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.63949871063232422" green="0.56957632303237915" blue="0.38197928667068481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="owl" translatesAutoresizingMaskIntoConstraints="NO" id="xOF-lc-V3l">
@@ -511,7 +516,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="8BitDrakeHead" width="81" height="65"/>
+        <image name="StillDrake" width="250" height="320"/>
         <image name="gearIcon" width="512" height="512"/>
         <image name="owl" width="2500" height="2500"/>
         <image name="phone" width="512" height="512"/>
@@ -519,7 +524,7 @@
         <image name="trophy" width="500" height="537"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kUC-KW-fK4"/>
-        <segue reference="0YT-O0-F1f"/>
+        <segue reference="Yr8-Ub-X8p"/>
+        <segue reference="Hko-Hg-ode"/>
     </inferredMetricsTieBreakers>
 </document>
