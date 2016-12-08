@@ -86,11 +86,11 @@ class StartScreenViewController: UIViewController {
             {
                 destination.drakeSkin = "Black"
             }
-            if self.currentSkin == 0
+            if self.currentMap == 0
             {
                 destination.map = "city_bg"
             }
-            else if self.currentSkin == 1
+            else if self.currentMap == 1
             {
                 destination.map = "bg_forest"
             }
