@@ -783,6 +783,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func makePaparazziEnemy() {
         if(!gamePaused){
             let enemy = SKSpriteNode(imageNamed: "paparazziEnemy")
+            // Setup Texture for Enemy
+            var enemyRunTexture = [SKTexture]()
+            for i in 1...13 {
+                let textureName = "ERun\(i)"
+                enemyRunTexture.append(SKTexture(imageNamed: textureName))
+            }
             var eStartX = CGFloat(0)
             // Left Third
             if(player.position.x < frame.size.width/3) {
@@ -808,6 +814,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             enemyPaparazziArr.append(enemy)
             addChild(enemy)
+            enemy.run(SKAction.repeatForever(SKAction.animate(with: enemyRunTexture, timePerFrame: 0.15)), withKey: "enemyRunning")
         }
     }
     
