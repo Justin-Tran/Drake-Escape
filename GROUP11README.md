@@ -1,6 +1,6 @@
 1. Implementation Contributions: A list of the team members that shows each members overall contribution to this release and a list of what features/functions they worked on.
 
-Justin Tran: 33.33%
+Justin Tran: 33.33% Implemented movement for all characters as well as add continued game physics improvements such as bouncing when jumping on an enemy.
 
 
 Rambo Wu: 33.33% - Implmented map and character skin change. Incorporated constraints to all view's to make compatible with iPhone 7 and iPhone 7 Plus. Fixed minor text errors. Fixed minor bugs.
@@ -27,11 +27,10 @@ Please run app on actual iPhone. Not all capabilities are adaptable for the game
 You can register an account with any email or use test@test.com password : testtest to access game.
 
 How to Play:
-- Hold touch left or right of the character to move in that particular direction
+- Hold touch left or right of the screen to move in that particular direction
 - Tap screen again while moving to jump (can double jump)
 - Tap anywhere on the bottom 25% (ground platform) of the screen to shoot a projectile. 
   You only have one so you must pick it up to use it again.
   The projectile is only active until it hits the first enemy. To make it active again, you must pick it up.
 - Avoid touching randomly spawning paparazzi or twitter birds, doing so will make you lose a life
 - Moving off the screen will teleport you to the other side
-- Falling in the hole will teleport you to the top
