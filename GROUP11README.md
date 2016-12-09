@@ -3,7 +3,7 @@
 Justin Tran: 33.33%
 
 
-Rambo Wu: 33.33%
+Rambo Wu: 33.33% - Implmented map and character skin change. Incorporated constraints to all view's to make compatible with iPhone 7 and iPhone 7 Plus. Fixed minor text errors. Fixed minor bugs.
 
 
 Rachelle Rogers: 33.33%
