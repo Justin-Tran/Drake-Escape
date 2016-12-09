@@ -1,13 +1,13 @@
 1. Implementation Contributions: A list of the team members that shows each members overall contribution to this release and a list of what features/functions they worked on.
 
 Justin Tran: 33.33%
-Added new varied enemy (twitter bird) with different following mechanics than the papparazzi. Added a pause button so the game and all of it's physics can be stopped at will. Changed the projectile shooting mechanic (detailed in the instructions) so that accidental shooting is less likely. Changed projectile to become inactive after one hit. General cleanup of game logic bugs.
+
 
 Rambo Wu: 33.33%
-Implemented views for application, linked app to Firebase database, updated highscores, added minigames and trivia, and added settings button.
+
 
 Rachelle Rogers: 33.33%
-Redesigned major screens including the log in, registration, and main screen. Designed and produced graphics and backgrounds for these screens, as well as the new enemy. Manipulated current graphics to place in different settings, such as changing Drake’s posture. Began to work on making the main character moveable. Also came up with a few of the multiple choice questions we're implementing.
+Designed and created the movement characters for the game so the original and Drake, as well as the paparazzi, will appear that they are running. The paparazzi's camera will flash in 3 frames of the movement. Made an additional Drake character to add character variety to the game, and developed movement images for him as well. Also developed the powerpoint for our presentation.
 
 2. Grading Level: If the team agrees that all members should receive the same grade for this release, then say “Same grade for all members”. If not, identify the grade level for each member - 100% for a full grade, 90%, etc.
 
@@ -22,6 +22,7 @@ None.
 Any special instructions needed to make sure your app can be built
 and run. For example, if you use CocoaPods - the minimum version to use.
 
+Please open 'iOS-Project.xcworkspace' instead of 'iOS-Project.xcodeproj'
 Please run app on actual iPhone. Not all capabilities are adaptable for the game on the simulator.
 You can register an account with any email or use test@test.com password : testtest to access game.
 
