@@ -29,6 +29,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc let heart_2 = SKSpriteNode(imageNamed: "heart")
     @objc let heart_3 = SKSpriteNode(imageNamed: "heart")
     @objc let pickUp = SKSpriteNode(imageNamed: "6god")
+    @objc var paparazziSpawnRate = 11.0
+    @objc var twitterSpawnRate = 27.0
     @objc var frameCount = 0
     @objc var numLives = 3
     @objc var numJumps = 0
@@ -207,17 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makePlayer()
         
         // Spawn Enemies via Time Interval
-        let spawnPaparazzi = SKAction.run(makePaparazziEnemy)
-        let waitToSpawnPaparazzi = SKAction.wait(forDuration: 10)
-        let spawnPaparazziSequence = SKAction.sequence([waitToSpawnPaparazzi, spawnPaparazzi])
-        let spawnPaparazziForever = SKAction.repeatForever(spawnPaparazziSequence)
-        self.run(spawnPaparazziForever, withKey: "spawningPaparazziEnemies")
-        
-        let spawnTwitter = SKAction.run(makeTwitterEnemy)
-        let waitToSpawnTwitter = SKAction.wait(forDuration: 25)
-        let spawnTwitterSequence = SKAction.sequence([waitToSpawnTwitter, spawnTwitter])
-        let spawnTwitterForever = SKAction.repeatForever(spawnTwitterSequence)
-        self.run(spawnTwitterForever, withKey: "spawningTwitterEnemies")
+        increaseSpawnRate()
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -276,6 +268,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             body2.node?.removeFromParent()
             self.gameViewControl!.performSegue(withIdentifier: "popoverTrivia", sender: self.gameViewControl!)
         }
+    }
+    
+    @objc func increaseSpawnRate() {
+        removeAction(forKey: "spawningPaparazziEnemies")
+        removeAction(forKey: "spawningTwitterEnemies")
+        if paparazziSpawnRate >= 4.0 {
+            paparazziSpawnRate -= 2.0
+            twitterSpawnRate -= 4.0
+        }
+        
+        // Spawn Enemies via Time Interval
+        let spawnPaparazzi = SKAction.run(makePaparazziEnemy)
+        let waitToSpawnPaparazzi = SKAction.wait(forDuration: paparazziSpawnRate)
+        let spawnPaparazziSequence = SKAction.sequence([waitToSpawnPaparazzi, spawnPaparazzi])
+        let spawnPaparazziForever = SKAction.repeatForever(spawnPaparazziSequence)
+        self.run(spawnPaparazziForever, withKey: "spawningPaparazziEnemies")
+        
+        let spawnTwitter = SKAction.run(makeTwitterEnemy)
+        let waitToSpawnTwitter = SKAction.wait(forDuration: twitterSpawnRate)
+        let spawnTwitterSequence = SKAction.sequence([waitToSpawnTwitter, spawnTwitter])
+        let spawnTwitterForever = SKAction.repeatForever(spawnTwitterSequence)
+        self.run(spawnTwitterForever, withKey: "spawningTwitterEnemies")
     }
     
     @objc func pauseUnpauseGame() {
@@ -427,6 +441,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Count Frames
             frameCount += 1
             
+            // Incease Spawn Rate every 10 seconds
+            if(frameCount % 1800 == 0)
+            {
+                increaseSpawnRate()
+            }
             // Start a minigame every 45 secounds
             if(frameCount % 2700 == 0)
             {
