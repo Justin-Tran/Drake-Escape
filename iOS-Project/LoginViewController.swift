@@ -11,9 +11,9 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    var email: String? = nil
-    var pass: String? = nil
-    var didRegister: Bool = false
+    @objc var email: String? = nil
+    @objc var pass: String? = nil
+    @objc var didRegister: Bool = false
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
@@ -52,7 +52,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     // declares an alert controller if Firebase fails to authenticate user
                     
                     
-                    let code = FIRAuthErrorCode(rawValue: (error as! NSError).code)
+                    let code = FIRAuthErrorCode(rawValue: (error! as NSError).code)
                     switch code! {
                     case .errorCodeInvalidEmail:
                         alert.message = "Please enter a valid email address."

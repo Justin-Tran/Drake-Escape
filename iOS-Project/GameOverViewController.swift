@@ -11,8 +11,8 @@ import Firebase
 
 class GameOverViewController: UIViewController {
 
-    var score:String? = nil
-    let highScoreString:String = "NEW HIGH SCORE. GOOD JOB"
+    @objc var score:String? = nil
+    @objc let highScoreString:String = "NEW HIGH SCORE. GOOD JOB"
     
     @IBOutlet weak var scoreOutlet: UILabel!
     @IBOutlet weak var highScoreOutlet: UILabel!

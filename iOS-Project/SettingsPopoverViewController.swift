@@ -10,8 +10,8 @@ import UIKit
 
 class SettingsPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
-    var settingsView: SettingsTableViewController? = nil
-    var startScreenDel: StartScreenViewController? = nil
+    @objc var settingsView: SettingsTableViewController? = nil
+    @objc var startScreenDel: StartScreenViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +19,10 @@ class SettingsPopoverViewController: UIViewController, UIPopoverPresentationCont
         // Do any additional setup after loading the view.
     }
     
-    func logoff() {
+    @objc func logoff() {
         startScreenDel?.performSegue(withIdentifier: "logout", sender: startScreenDel)
     }
-    func presentPopover(sourceController:UIViewController, sourceView:UIView, sourceRect:CGRect) {
+    @objc func presentPopover(sourceController:UIViewController, sourceView:UIView, sourceRect:CGRect) {
         
         // Create the view controller we want to display as the popup.
         self.settingsView = SettingsTableViewController(title: "Candidates", preferredContentSize: CGSize(width: 200, height: 140))
