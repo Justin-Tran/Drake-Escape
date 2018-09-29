@@ -12,10 +12,10 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    var scene: GameScene? = nil
-    var music: Bool = true
-    var drakeSkin: String = "Red"
-    var map: String = "city_bg"
+    @objc var scene: GameScene? = nil
+    @objc var music: Bool = true
+    @objc var drakeSkin: String = "Red"
+    @objc var map: String = "city_bg"
     
     override func viewDidLoad() {
         super.viewDidLoad()

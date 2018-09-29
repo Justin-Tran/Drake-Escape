@@ -17,10 +17,10 @@ class TriviaViewController: UIViewController{
     @IBOutlet weak var answerC: UIButton!
     @IBOutlet weak var answerD: UIButton!
     
-    var correct: Int = 0
-    var gameView: GameViewController? = nil
+    @objc var correct: Int = 0
+    @objc var gameView: GameViewController? = nil
     // Number of points you get for answering a question correct.
-    var pointsCorrect = 500
+    @objc var pointsCorrect = 500
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,41 +11,41 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var gameViewControl: GameViewController? = nil
-    var backgroundMusic: SKAudioNode!
-    var enemyPaparazziArr:[SKSpriteNode] = [SKSpriteNode]()
-    var enemyTwitterArr:[SKSpriteNode] = [SKSpriteNode]()
-    var drakeSkin = "Black"
-    var map = "city_bg"
-    var player = SKSpriteNode(imageNamed: "StillDrake")
-    var runTextureArray = [SKTexture]()
-    let album = SKSpriteNode(imageNamed: "fireAlbum")
-    var hasAlbum = true
-    var activeAlbum = false
-    var gamePaused = false
-    var pickUpOnScreen = false
-    let pauseButton = SKSpriteNode(imageNamed: "pause")
-    let heart_1 = SKSpriteNode(imageNamed: "heart")
-    let heart_2 = SKSpriteNode(imageNamed: "heart")
-    let heart_3 = SKSpriteNode(imageNamed: "heart")
-    let pickUp = SKSpriteNode(imageNamed: "6god")
-    var frameCount = 0
-    var numLives = 3
-    var numJumps = 0
-    var firstTouch = 0
-    var touchingScreen = false
-    var moveDirection = "Left"
-    let scoreLabel = SKLabelNode(fontNamed: "The Bold Font")
-    let holdToMove = SKLabelNode(fontNamed: "The Bold Font")
-    let tapToJump = SKLabelNode(fontNamed: "The Bold Font")
-    let avoidEnemies = SKLabelNode(fontNamed: "The Bold Font")
-    let tapToFire = SKLabelNode(fontNamed: "The Bold Font")
-    let touchtoPickup = SKLabelNode(fontNamed: "The Bold Font")
-    let jumpOnEnemies = SKLabelNode(fontNamed: "The Bold Font")
-    let touch6God = SKLabelNode(fontNamed: "The Bold Font")
-    var gameScore: Int = 0
-    var gameArea: CGRect
-    var music: Bool = true
+    @objc var gameViewControl: GameViewController? = nil
+    @objc var backgroundMusic: SKAudioNode!
+    @objc var enemyPaparazziArr:[SKSpriteNode] = [SKSpriteNode]()
+    @objc var enemyTwitterArr:[SKSpriteNode] = [SKSpriteNode]()
+    @objc var drakeSkin = "Black"
+    @objc var map = "city_bg"
+    @objc var player = SKSpriteNode(imageNamed: "StillDrake")
+    @objc var runTextureArray = [SKTexture]()
+    @objc let album = SKSpriteNode(imageNamed: "fireAlbum")
+    @objc var hasAlbum = true
+    @objc var activeAlbum = false
+    @objc var gamePaused = false
+    @objc var pickUpOnScreen = false
+    @objc var pauseButton = SKSpriteNode(imageNamed: "pause")
+    @objc let heart_1 = SKSpriteNode(imageNamed: "heart")
+    @objc let heart_2 = SKSpriteNode(imageNamed: "heart")
+    @objc let heart_3 = SKSpriteNode(imageNamed: "heart")
+    @objc let pickUp = SKSpriteNode(imageNamed: "6god")
+    @objc var frameCount = 0
+    @objc var numLives = 3
+    @objc var numJumps = 0
+    @objc var firstTouch = 0
+    @objc var touchingScreen = false
+    @objc var moveDirection = "Left"
+    @objc let scoreLabel = SKLabelNode(fontNamed: "The Bold Font")
+    @objc let holdToMove = SKLabelNode(fontNamed: "The Bold Font")
+    @objc let tapToJump = SKLabelNode(fontNamed: "The Bold Font")
+    @objc let avoidEnemies = SKLabelNode(fontNamed: "The Bold Font")
+    @objc let tapToFire = SKLabelNode(fontNamed: "The Bold Font")
+    @objc let touchtoPickup = SKLabelNode(fontNamed: "The Bold Font")
+    @objc let jumpOnEnemies = SKLabelNode(fontNamed: "The Bold Font")
+    @objc let touch6God = SKLabelNode(fontNamed: "The Bold Font")
+    @objc var gameScore: Int = 0
+    @objc var gameArea: CGRect
+    @objc var music: Bool = true
     
     struct PhysicsCategories {
         static let None : UInt32 = 0x1 << 0
@@ -56,10 +56,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let PickUp : UInt32 = 0x1 << 5
     }
     
-    func random() -> CGFloat {
+    @objc func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
     }
-    func random(min:CGFloat, max: CGFloat) -> CGFloat {
+    @objc func random(min:CGFloat, max: CGFloat) -> CGFloat {
         return random() * (max - min) + min
     }
 
@@ -148,7 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         avoidEnemies.isHidden = true
         self.addChild(avoidEnemies)
         
-        tapToFire.text = "Tap ground to shoot mixtape at enemies"
+        tapToFire.text = "Tap ground to throw mixtape at enemies"
         tapToFire.fontSize = 70
         tapToFire.fontColor = SKColor.white
         tapToFire.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.17)
@@ -156,7 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tapToFire.isHidden = true
         self.addChild(tapToFire)
         
-        touchtoPickup.text = "Pickup mixtape to shoot again"
+        touchtoPickup.text = "Pickup mixtape to throw again"
         touchtoPickup.fontSize = 70
         touchtoPickup.fontColor = SKColor.white
         touchtoPickup.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.17)
@@ -278,7 +278,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func pauseUnpauseGame() {
+    @objc func pauseUnpauseGame() {
         if(gamePaused) {
             if music
             {
@@ -300,7 +300,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func playerJump() {
+    @objc func playerJump() {
         player.action(forKey: "running")?.speed = 0
         if drakeSkin == "Red" {
             player.texture = SKTexture(imageNamed: "Run10")
@@ -315,12 +315,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func addScore() {
+    @objc func addScore() {
         gameScore += 100
         scoreLabel.text = "Score: \(gameScore)"
     }
     
-    func loseLife() {
+    @objc func loseLife() {
         // Knockback to indicate damage
         if(moveDirection == "Left") {
             player.physicsBody?.applyImpulse(CGVector(dx: 150, dy: 300))
@@ -342,7 +342,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func throwAlbum(_ direction: String) {
+    @objc func throwAlbum(_ direction: String) {
         hasAlbum = false
         activeAlbum = true
         album.isHidden = false
@@ -356,7 +356,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func gameOver() {
+    @objc func gameOver() {
         // segues to game over screen and deallocates sprites
         if music
         {
@@ -565,7 +565,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func makePlatforms() {
+    @objc func makePlatforms() {
         // Make Floor
         let z = SKSpriteNode(imageNamed: "castleMid")
         let floorWidth = z.size.width
@@ -757,7 +757,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(_r)
     }
     
-    func makePlayer() {
+    @objc func makePlayer() {
         // Create Player
         player.position = CGPoint(x: frame.size.width/2, y: 900)
         player.zPosition = 2
@@ -780,7 +780,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(album)
     }
     
-    func makePaparazziEnemy() {
+    @objc func makePaparazziEnemy() {
         if(!gamePaused){
             let enemy = SKSpriteNode(imageNamed: "paparazziEnemy")
             // Setup Texture for Enemy
@@ -818,7 +818,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func makeTwitterEnemy() {
+    @objc func makeTwitterEnemy() {
         if(!gamePaused){
             let enemy = SKSpriteNode(imageNamed: "twitterEnemy")
             var eStartX = CGFloat(0)
@@ -843,7 +843,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func spawnPickUp() {
+    @objc func spawnPickUp() {
         if(!pickUpOnScreen) {
             pickUpOnScreen = true
             let eStartX = random(min: CGFloat(100), max: CGFloat(frame.size.width-100))

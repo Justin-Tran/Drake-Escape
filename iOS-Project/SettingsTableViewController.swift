@@ -11,10 +11,10 @@ import Firebase
 
 class SettingsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var tableView:UITableView = UITableView()
-    var popoverDel: SettingsPopoverViewController? = nil
+    @objc var tableView:UITableView = UITableView()
+    @objc var popoverDel: SettingsPopoverViewController? = nil
     
-    convenience init(title:String, preferredContentSize: CGSize)
+    @objc convenience init(title:String, preferredContentSize: CGSize)
     {
         self.init()
         self.preferredContentSize = preferredContentSize

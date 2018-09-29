@@ -11,7 +11,7 @@ import Firebase
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
-    let ref = FIRDatabase.database().reference(withPath: "UserInfo")
+    @objc let ref = FIRDatabase.database().reference(withPath: "UserInfo")
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
@@ -47,7 +47,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 }
                 else
                 {
-                    let code = FIRAuthErrorCode(rawValue: (error as! NSError).code)
+                    let code = FIRAuthErrorCode(rawValue: (error! as NSError).code)
                     switch code!
                     {
                         case .errorCodeInvalidEmail:

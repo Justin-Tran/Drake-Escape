@@ -15,9 +15,9 @@ class StartScreenViewController: UIViewController {
     @IBOutlet weak var drakeButton: UIButton!
     @IBOutlet weak var mapButton: UIButton!
     
-    var music: Bool = true
-    var currentSkin: Int = 0
-    var currentMap: Int = 0
+    @objc var music: Bool = true
+    @objc var currentSkin: Int = 0
+    @objc var currentMap: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
